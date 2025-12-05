@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/themes/app_theme.dart';
+import 'responsive_helper.dart';
 
 class CustomAppBar extends StatelessWidget {
   final Function(GlobalKey) onNavigate;
@@ -25,6 +26,11 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final isDesktop = ResponsiveHelper.isDesktop(width);
+    final isTablet = ResponsiveHelper.isTablet(width);
+    final isMobile = ResponsiveHelper.isMobile(width);
+
     return SliverAppBar(
       floating: true,
       pinned: true,
@@ -35,14 +41,17 @@ class CustomAppBar extends StatelessWidget {
         style: AppTheme.subHeadingStyle.copyWith(fontSize: 20),
       ),
       actions: [
-        if (MediaQuery.of(context).size.width > 800) ...[
-          _buildNavButton('Home', () => onNavigate(heroKey)),
-          _buildNavButton('About', () => onNavigate(aboutKey)),
-          _buildNavButton('Experience', () => onNavigate(experienceKey)),
-          _buildNavButton('Skills', () => onNavigate(skillsKey)),
-          _buildNavButton('Projects', () => onNavigate(projectsKey)),
-          _buildNavButton('Education', () => onNavigate(educationKey)),
-          _buildNavButton('Contact', () => onNavigate(contactKey)),
+        if (width > 800) ...[
+          _buildNavButton(context, 'Home', () => onNavigate(heroKey)),
+          _buildNavButton(context, 'About', () => onNavigate(aboutKey)),
+          _buildNavButton(
+              context, 'Experience', () => onNavigate(experienceKey)),
+          _buildNavButton(context, 'Skills', () => onNavigate(skillsKey)),
+          _buildNavButton(context, 'Projects', () => onNavigate(projectsKey)),
+          if (isDesktop || isTablet)
+            _buildNavButton(
+                context, 'Education', () => onNavigate(educationKey)),
+          _buildNavButton(context, 'Contact', () => onNavigate(contactKey)),
         ] else ...[
           PopupMenuButton<String>(
             icon: const Icon(Icons.menu, color: AppTheme.textPrimary),
@@ -87,15 +96,23 @@ class CustomAppBar extends StatelessWidget {
     );
   }
 
-  Widget _buildNavButton(String text, VoidCallback onPressed) {
+  Widget _buildNavButton(
+      BuildContext context, String text, VoidCallback onPressed) {
+    final isTablet = ResponsiveHelper.isTablet(MediaQuery.of(context).size.width);
+
     return TextButton(
       onPressed: onPressed,
+      style: ButtonStyle(
+        padding: WidgetStateProperty.all<EdgeInsets>(
+          EdgeInsets.symmetric(horizontal: isTablet ? 8 : 10),
+        ),
+      ),
       child: Text(
         text,
-        style: const TextStyle(
+        style: TextStyle(
           color: AppTheme.textPrimary,
           fontWeight: FontWeight.w500,
-          fontSize: 16,
+          fontSize: isTablet ? 14 : 16,
         ),
       ),
     );

@@ -37,33 +37,7 @@ efficient code and stunning user interfaces.'''; // Contact Information
     'Mobile Development',
   ];
 
-  // Projects (sample data)
-  static const List<Map<String, String>> projects = [
-    {
-      'title': 'E-Commerce App',
-      'description':
-          'A full-featured e-commerce mobile application with Firebase backend',
-      'image': 'assets/images/project1.jpg',
-      'github': 'https://github.com/iamsaifulhassan/ecommerce-app',
-      'demo': 'https://example.com/demo1',
-    },
-    {
-      'title': 'Task Manager',
-      'description':
-          'A beautiful task management app with local storage and notifications',
-      'image': 'assets/images/project2.jpg',
-      'github': 'https://github.com/iamsaifulhassan/task-manager',
-      'demo': 'https://example.com/demo2',
-    },
-    {
-      'title': 'Weather App',
-      'description':
-          'Real-time weather app with location services and beautiful animations',
-      'image': 'assets/images/project3.jpg',
-      'github': 'https://github.com/iamsaifulhassan/weather-app',
-      'demo': 'https://example.com/demo3',
-    },
-  ];
+  // Projects are now managed in PortfolioRepository
 
   // Portfolio URLs
   static const String portfolioUrl = website;

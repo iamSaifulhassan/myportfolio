@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../core/themes/app_theme.dart';
 import '../../data/repositories/portfolio_repository.dart';
 import '../../data/models/project.dart';
+import 'responsive_helper.dart';
 
 class ProjectsSection extends StatefulWidget {
   const ProjectsSection({super.key});
@@ -18,19 +19,19 @@ class _ProjectsSectionState extends State<ProjectsSection> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final isDesktop = size.width > 1024;
-    final isTablet = size.width > 600 && size.width <= 1024;
+    final width = MediaQuery.of(context).size.width;
+    final isDesktop = ResponsiveHelper.isDesktop(width);
+    final isTablet = ResponsiveHelper.isTablet(width);
 
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: isDesktop ? 100 : (isTablet ? 50 : 20),
-        vertical: 100,
+        horizontal: isDesktop ? 100.0 : (isTablet ? 40.0 : 20.0),
+        vertical: AppTheme.spacingXXL,
       ),
       child: Column(
         children: [
           FadeInDown(
-            duration: const Duration(milliseconds: 100),
+            duration: const Duration(milliseconds: 800),
             child: Text(
               'Featured Projects',
               style:
@@ -40,7 +41,8 @@ class _ProjectsSectionState extends State<ProjectsSection> {
           ),
           const SizedBox(height: 20),
           FadeInDown(
-            duration: const Duration(milliseconds: 100),
+            duration: const Duration(milliseconds: 800),
+            delay: const Duration(milliseconds: 100),
             child: Container(
               width: 100,
               height: 4,
@@ -50,7 +52,7 @@ class _ProjectsSectionState extends State<ProjectsSection> {
               ),
             ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: AppTheme.spacingXL),
           _buildCategoryFilter(),
           const SizedBox(height: 60),
           _buildProjectsGrid(isDesktop, isTablet),
@@ -61,7 +63,8 @@ class _ProjectsSectionState extends State<ProjectsSection> {
 
   Widget _buildCategoryFilter() {
     return FadeInUp(
-      duration: const Duration(milliseconds: 1200),
+      duration: const Duration(milliseconds: 800),
+      delay: const Duration(milliseconds: 200),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: categories.map((category) {
@@ -104,23 +107,83 @@ class _ProjectsSectionState extends State<ProjectsSection> {
   }
 
   Widget _buildProjectsGrid(bool isDesktop, bool isTablet) {
+    if (isDesktop) {
+      return _buildDesktopGrid();
+    } else if (isTablet) {
+      return _buildTabletGrid();
+    } else {
+      return _buildMobileGrid();
+    }
+  }
+
+  Widget _buildDesktopGrid() {
     final projects = _getFilteredProjects();
-    final crossAxisCount = isDesktop ? 2 : 1;
+    return FadeInUp(
+      duration: const Duration(milliseconds: 300),
+      delay: const Duration(milliseconds: 300),
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 30,
+          mainAxisSpacing: 30,
+          childAspectRatio: 1.5, // Wide immersive cards for desktop
+        ),
+        itemCount: projects.length,
+        itemBuilder: (context, index) {
+          return _ImmersiveProjectCard(
+              project: projects[index], index: index, isMobile: false);
+        },
+      ),
+    );
+  }
+
+  Widget _buildTabletGrid() {
+    final projects = _getFilteredProjects();
+    return FadeInUp(
+      duration: const Duration(milliseconds: 800),
+      delay: const Duration(milliseconds: 300),
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+          childAspectRatio: 1.0, // Square-ish immersive cards for tablet
+        ),
+        itemCount: projects.length,
+        itemBuilder: (context, index) {
+          return _ImmersiveProjectCard(
+              project: projects[index], index: index, isMobile: false);
+        },
+      ),
+    );
+  }
+
+  Widget _buildMobileGrid() {
+    final projects = _getFilteredProjects();
+    final size = MediaQuery.of(context).size;
+    // Mobile: 1 column, slightly taller to show more image
+    final mobileAspectRatio = size.width / 400;
 
     return FadeInUp(
-      duration: const Duration(milliseconds: 1400),
+      duration: const Duration(milliseconds: 800),
+      delay: const Duration(milliseconds: 300),
       child: GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
-          crossAxisSpacing: 30,
-          mainAxisSpacing: 30,
-          childAspectRatio: isDesktop ? 1.3 : 0.8,
+          crossAxisCount: 1,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+          childAspectRatio: mobileAspectRatio,
         ),
         itemCount: projects.length,
         itemBuilder: (context, index) {
-          return _buildProjectCard(projects[index], index);
+          return _ImmersiveProjectCard(
+              project: projects[index], index: index, isMobile: true);
         },
       ),
     );
@@ -135,180 +198,279 @@ class _ProjectsSectionState extends State<ProjectsSection> {
         .where((project) => project.category == selectedCategory)
         .toList();
   }
+}
 
-  Widget _buildProjectCard(Project project, int index) {
-    return FadeInUp(
-      duration: Duration(milliseconds: 1400 + (index * 200)),
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: AppTheme.cardGradient,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: AppTheme.cardShadow,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Project Image
-            Container(
-              height: 200,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                gradient: AppTheme.primaryGradient,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-              ),
-              child: project.imageUrl != null
-                  ? ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
-                      child: Image.asset(
-                        project.imageUrl!,
-                        fit: BoxFit.cover,
-                      ),
-                    )
-                  : const Icon(
-                      Icons.laptop_mac,
-                      size: 80,
-                      color: Colors.white,
-                    ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(25),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            project.title,
-                            style:
-                                AppTheme.subHeadingStyle.copyWith(fontSize: 20),
-                          ),
-                        ),
-                        if (project.isFeatured)
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppTheme.accentColor,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Text(
-                              'Featured',
-                              style: AppTheme.bodyStyle.copyWith(
-                                fontSize: 10,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      project.description,
-                      style: AppTheme.bodyStyle.copyWith(fontSize: 14),
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 15),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: project.technologies.map((tech) {
-                        return Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: AppTheme.primaryColor.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: AppTheme.primaryColor.withOpacity(0.3),
-                            ),
-                          ),
-                          child: Text(
-                            tech,
-                            style: AppTheme.bodyStyle.copyWith(
-                              fontSize: 11,
-                              color: AppTheme.primaryColor,
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                    const Spacer(),
-                    Row(
-                      children: [
-                        if (project.githubUrl != null) ...[
-                          Expanded(
-                            child: _buildActionButton(
-                              'Code',
-                              Icons.code,
-                              () => _launchURL(project.githubUrl!),
-                              isPrimary: false,
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                        ],
-                        if (project.liveUrl != null)
-                          Expanded(
-                            child: _buildActionButton(
-                              'Live Demo',
-                              Icons.launch,
-                              () => _launchURL(project.liveUrl!),
-                              isPrimary: true,
-                            ),
-                          ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+class _ImmersiveProjectCard extends StatefulWidget {
+  final Project project;
+  final int index;
+  final bool isMobile;
 
-  Widget _buildActionButton(
-    String text,
-    IconData icon,
-    VoidCallback onPressed, {
-    required bool isPrimary,
-  }) {
-    return ElevatedButton.icon(
-      onPressed: onPressed,
-      icon: Icon(icon, size: 16),
-      label: Text(text),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: isPrimary ? AppTheme.primaryColor : Colors.transparent,
-        foregroundColor: isPrimary ? Colors.white : AppTheme.primaryColor,
-        side: isPrimary
-            ? null
-            : const BorderSide(color: AppTheme.primaryColor, width: 1),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        elevation: isPrimary ? 4 : 0,
-      ),
-    );
-  }
+  const _ImmersiveProjectCard({
+    required this.project,
+    required this.index,
+    required this.isMobile,
+  });
+
+  @override
+  State<_ImmersiveProjectCard> createState() => _ImmersiveProjectCardState();
+}
+
+class _ImmersiveProjectCardState extends State<_ImmersiveProjectCard> {
+  bool isHovered = false;
 
   void _launchURL(String url) async {
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => isHovered = true),
+      onExit: (_) => setState(() => isHovered = false),
+      child: FadeInUp(
+        duration: const Duration(milliseconds: 800),
+        delay: Duration(milliseconds: widget.index * 100),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: isHovered
+                ? [
+                    BoxShadow(
+                      color: AppTheme.primaryColor.withOpacity(0.3),
+                      blurRadius: 30,
+                      offset: const Offset(0, 10),
+                    )
+                  ]
+                : AppTheme.cardShadow,
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                // Background Image with Zoom Effect
+                AnimatedScale(
+                  scale: isHovered ? 1.05 : 1.0,
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeOutCubic,
+                  child: widget.project.imageUrl != null
+                      ? Image.asset(
+                          widget.project.imageUrl!,
+                          fit: BoxFit.cover,
+                        )
+                      : Container(
+                          color: AppTheme.cardColor,
+                          child: Center(
+                            child: Icon(
+                              Icons.laptop_mac,
+                              size: 80,
+                              color: Colors.white.withOpacity(0.2),
+                            ),
+                          ),
+                        ),
+                ),
+
+                // Gradient Overlay
+                Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent,
+                        Colors.black.withOpacity(0.2),
+                        Colors.black.withOpacity(0.8),
+                        Colors.black.withOpacity(0.95),
+                      ],
+                      stops: const [0.0, 0.4, 0.8, 1.0],
+                    ),
+                  ),
+                ),
+
+                // Content
+                Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Featured Badge
+                      if (widget.project.isFeatured)
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 12),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppTheme.accentColor.withOpacity(0.9),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.star,
+                                size: 12,
+                                color: Colors.white,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                'Featured',
+                                style: AppTheme.bodyStyle.copyWith(
+                                  fontSize: 10,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                      // Title
+                      Text(
+                        widget.project.title,
+                        style: AppTheme.headingStyle.copyWith(
+                          fontSize: widget.isMobile ? 24 : 28,
+                          color: Colors.white,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      // Description
+                      Text(
+                        widget.project.description,
+                        style: AppTheme.bodyStyle.copyWith(
+                          fontSize: widget.isMobile ? 12 : 14,
+                          color: Colors.white.withOpacity(0.8),
+                          height: 1.4,
+                        ),
+                        maxLines: widget.isMobile ? 2 : 3,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      // Tech Stack
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children:
+                            widget.project.technologies.take(3).map((tech) {
+                          return Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.15),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: Colors.white.withOpacity(0.2),
+                              ),
+                            ),
+                            child: Text(
+                              tech,
+                              style: const TextStyle(
+                                fontSize: 11,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      // Action Buttons
+                      Row(
+                        children: [
+                          if (widget.project.liveUrl != null)
+                            Expanded(
+                              child: Container(
+                                height: 44,
+                                decoration: BoxDecoration(
+                                  gradient: AppTheme.primaryGradient,
+                                  borderRadius: BorderRadius.circular(12),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: AppTheme.primaryColor
+                                          .withOpacity(0.3),
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: ElevatedButton(
+                                  onPressed: () =>
+                                      _launchURL(widget.project.liveUrl!),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.transparent,
+                                    shadowColor: Colors.transparent,
+                                    padding: EdgeInsets.zero,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    'View Live',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          if (widget.project.liveUrl != null &&
+                              widget.project.githubUrl != null)
+                            const SizedBox(width: 12),
+                          if (widget.project.githubUrl != null)
+                            Expanded(
+                              child: Container(
+                                height: 44,
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(
+                                    color: Colors.white.withOpacity(0.3),
+                                  ),
+                                ),
+                                child: TextButton(
+                                  onPressed: () =>
+                                      _launchURL(widget.project.githubUrl!),
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: Colors.white,
+                                    padding: EdgeInsets.zero,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    'GitHub',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

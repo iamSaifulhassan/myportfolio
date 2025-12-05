@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../core/themes/app_theme.dart';
+import 'responsive_helper.dart';
 
 class SkillsSection extends StatelessWidget {
   const SkillsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final isDesktop = size.width > 1024;
-    final isTablet = size.width > 600 && size.width <= 1024;
-    final isMobile = size.width <= 600;
+    final width = MediaQuery.of(context).size.width;
+    final isDesktop = ResponsiveHelper.isDesktop(width);
+    final isTablet = ResponsiveHelper.isTablet(width);
+    final isMobile = ResponsiveHelper.isMobile(width);
 
     // Responsive paddings and vertical spacing
-    final horizontalPadding = isDesktop ? 100.0 : (isTablet ? 40.0 : 12.0);
+    final horizontalPadding = isDesktop ? 100.0 : (isTablet ? 40.0 : 20.0);
     final verticalPadding = isDesktop ? 80.0 : (isTablet ? 60.0 : 32.0);
     final sectionSpacing = isDesktop ? 60.0 : (isTablet ? 40.0 : 24.0);
 
@@ -27,12 +28,13 @@ class SkillsSection extends StatelessWidget {
         color: AppTheme.backgroundColor,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // About text section
           FadeInLeft(
             duration: const Duration(milliseconds: 800),
             child: Container(
+              width: double.infinity,
               padding: EdgeInsets.only(bottom: sectionSpacing),
               child: Text(
                 '''I'm passionate about solving complex problems and creating user-friendly applications that make a difference. With a strong background in Flutter and backend technologies, I'm always eager to learn new technologies and take on challenging projects.''',
@@ -40,6 +42,7 @@ class SkillsSection extends StatelessWidget {
                   fontSize: isDesktop ? 16 : (isTablet ? 15 : 13),
                   height: 1.6,
                 ),
+                textAlign: isDesktop ? TextAlign.start : TextAlign.center,
               ),
             ),
           ),
@@ -62,28 +65,33 @@ class SkillsSection extends StatelessWidget {
   }
 
   Widget _buildDesktopLayout(double sectionSpacing, double maxWidth) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Left side - Technologies I Work With
-        Expanded(
-          flex: 3,
-          child: _buildTechnologiesGrid(maxWidth: maxWidth * 0.55),
-        ),
-        SizedBox(width: sectionSpacing),
-        // Right side - Skills & Technologies pills
-        Expanded(
-          flex: 2,
-          child: _buildSkillsPills(maxWidth: maxWidth * 0.35),
-        ),
-      ],
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // Left side - Technologies I Work With
+          Expanded(
+            flex: 3,
+            child: _buildTechnologiesGrid(maxWidth: maxWidth * 0.55),
+          ),
+          SizedBox(width: sectionSpacing),
+          // Right side - Skills & Technologies pills
+          Expanded(
+            flex: 2,
+            child: _buildSkillsPills(maxWidth: maxWidth * 0.35),
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildMobileLayout(
       bool isMobile, double sectionSpacing, double maxWidth) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         _buildSkillsPills(maxWidth: maxWidth),
         SizedBox(height: sectionSpacing),
@@ -94,13 +102,15 @@ class SkillsSection extends StatelessWidget {
 
   Widget _buildTechnologiesGrid({double? maxWidth}) {
     return FadeInUp(
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 800),
+      delay: const Duration(milliseconds: 100),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             'Technologies I Work With',
             style: AppTheme.subHeadingStyle.copyWith(fontSize: 22),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
           LayoutBuilder(
@@ -108,12 +118,16 @@ class SkillsSection extends StatelessWidget {
               final width = maxWidth ?? constraints.maxWidth;
               // Responsive pill width
               final pillMaxWidth = width < 400 ? width * 0.95 : 220.0;
-              return Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                children: _getTechnologies()
-                    .map((tech) => _buildTechPill(tech['name']!, pillMaxWidth))
-                    .toList(),
+              return Center(
+                child: Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  alignment: WrapAlignment.center,
+                  children: _getTechnologies()
+                      .map(
+                          (tech) => _buildTechPill(tech['name']!, pillMaxWidth))
+                      .toList(),
+                ),
               );
             },
           ),
@@ -124,25 +138,30 @@ class SkillsSection extends StatelessWidget {
 
   Widget _buildSkillsPills({double? maxWidth}) {
     return FadeInRight(
-      duration: const Duration(milliseconds: 1200),
+      duration: const Duration(milliseconds: 800),
+      delay: const Duration(milliseconds: 200),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             'Skills & Technologies',
             style: AppTheme.subHeadingStyle.copyWith(fontSize: 22),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
           LayoutBuilder(
             builder: (context, constraints) {
               final width = maxWidth ?? constraints.maxWidth;
               final pillMaxWidth = width < 400 ? width * 0.95 : 180.0;
-              return Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                children: _getSkillsList()
-                    .map((skill) => _buildSkillPill(skill, pillMaxWidth))
-                    .toList(),
+              return Center(
+                child: Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  alignment: WrapAlignment.center,
+                  children: _getSkillsList()
+                      .map((skill) => _buildSkillPill(skill, pillMaxWidth))
+                      .toList(),
+                ),
               );
             },
           ),

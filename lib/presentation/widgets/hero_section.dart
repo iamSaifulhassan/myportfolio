@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import '../../core/themes/app_theme.dart';
 import '../../core/constants/app_constants.dart';
 import '../pages/portfolio_page.dart'; // Import for ScrollToSectionNotification
+import 'responsive_helper.dart';
 
 // Add this import only for web
 // ignore: avoid_web_libraries_in_flutter
@@ -15,13 +16,20 @@ class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     final size = MediaQuery.of(context).size;
-    final isDesktop = size.width > 1200;
-    final isTablet = size.width > 768 && size.width <= 1200;
-    final isMobile = size.width <= 768;
+    final isDesktop = ResponsiveHelper.isDesktop(width);
+    final isTablet = ResponsiveHelper.isTablet(width);
+    final isMobile = ResponsiveHelper.isMobile(width);
+    final smallMobile = width < 400;
+
+    // Make height responsive to avoid overflow on small screens
+    final containerHeight = smallMobile ? null : size.height;
 
     return Container(
-      height: size.height,
+      constraints: BoxConstraints(
+        minHeight: size.height, // Ensure it takes at least full screen height
+      ),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -62,11 +70,14 @@ class HeroSection extends StatelessWidget {
   }
 
   Widget _buildMobileLayout(BuildContext context, bool isMobile) {
+    final size = MediaQuery.of(context).size;
+    final smallMobile = size.width < 400;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _buildImageContent(isMobile: isMobile),
-        SizedBox(height: isMobile ? 30 : 40),
+        _buildImageContent(isMobile: smallMobile ? true : isMobile),
+        SizedBox(height: smallMobile ? 20 : (isMobile ? 30 : 40)),
         _buildTextContent(context, isDesktop: false, isMobile: isMobile),
       ],
     );
@@ -90,8 +101,10 @@ class HeroSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
+        const SizedBox(height: 10),
         FadeInDown(
-          duration: const Duration(milliseconds: 1000),
+          duration: const Duration(milliseconds: 800),
+          delay: const Duration(milliseconds: 100),
           child: Text(
             AppConstants.developerName,
             style: AppTheme.headingStyle.copyWith(
@@ -102,8 +115,10 @@ class HeroSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
+        const SizedBox(height: 20),
         FadeInDown(
-          duration: const Duration(milliseconds: 1200),
+          duration: const Duration(milliseconds: 800),
+          delay: const Duration(milliseconds: 200),
           child: Text(
             AppConstants.tagline,
             style: AppTheme.subHeadingStyle.copyWith(
@@ -114,8 +129,10 @@ class HeroSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 40),
+        const SizedBox(height: 40),
         FadeInUp(
-          duration: const Duration(milliseconds: 1400),
+          duration: const Duration(milliseconds: 800),
+          delay: const Duration(milliseconds: 300),
           child: Row(
             mainAxisAlignment:
                 isDesktop ? MainAxisAlignment.start : MainAxisAlignment.center,
@@ -139,8 +156,10 @@ class HeroSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 40),
+        const SizedBox(height: 40),
         FadeInUp(
-          duration: const Duration(milliseconds: 1600),
+          duration: const Duration(milliseconds: 800),
+          delay: const Duration(milliseconds: 400),
           child: _buildSocialButtons(),
         ),
       ],
@@ -148,9 +167,12 @@ class HeroSection extends StatelessWidget {
   }
 
   Widget _buildImageContent({bool isMobile = false}) {
+    // More responsive sizing based on screen width
     final imageSize = isMobile ? 250.0 : 320.0;
+
     return FadeInRight(
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 800),
+      delay: const Duration(milliseconds: 200),
       child: Container(
         width: imageSize,
         height: imageSize,
@@ -176,13 +198,9 @@ class HeroSection extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(6.0),
           child: ClipOval(
-            child: Container(
-              width: 308,
-              height: 308,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
+            child: SizedBox(
+              width: imageSize - 12,
+              height: imageSize - 12,
               child: Image.asset(
                 'assets/images/Profile.jpg',
                 fit: BoxFit.cover,

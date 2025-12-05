@@ -26,6 +26,7 @@ flutter:
   uses-material-design: true  
   assets:
     - assets/images/
+    - assets/images/projects/
     - assets/images/jpmorgan.png
     - assets/images/tech/flutter.svg
     - assets/images/tech/dart.svg

@@ -18,6 +18,8 @@ class PortfolioPage extends StatefulWidget {
 
 class _PortfolioPageState extends State<PortfolioPage> {
   final ScrollController _scrollController = ScrollController();
+  bool _showScrollToTop = false;
+
   final GlobalKey _heroKey = GlobalKey();
   final GlobalKey _aboutKey = GlobalKey();
   final GlobalKey _experienceKey = GlobalKey();
@@ -55,13 +57,13 @@ class _PortfolioPageState extends State<PortfolioPage> {
         } else if (key == _contactKey) {
           fallbackOffset = _scrollController.position.maxScrollExtent * 0.7;
         } else if (key == _educationKey) {
-          fallbackOffset = _scrollController.position.maxScrollExtent * 0.6;
-        } else if (key == _experienceKey) {
           fallbackOffset = _scrollController.position.maxScrollExtent * 0.3;
-        } else if (key == _skillsKey) {
-          fallbackOffset = _scrollController.position.maxScrollExtent * 0.2;
-        } else if (key == _aboutKey) {
+        } else if (key == _experienceKey) {
           fallbackOffset = _scrollController.position.maxScrollExtent * 0.1;
+        } else if (key == _skillsKey) {
+          fallbackOffset = _scrollController.position.maxScrollExtent * 0.3;
+        } else if (key == _aboutKey) {
+          fallbackOffset = _scrollController.position.maxScrollExtent * 0.3;
         }
         _scrollController
             .animateTo(
@@ -77,6 +79,22 @@ class _PortfolioPageState extends State<PortfolioPage> {
     }
 
     tryScroll();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      setState(() {
+        _showScrollToTop = _scrollController.offset > 500;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -120,6 +138,19 @@ class _PortfolioPageState extends State<PortfolioPage> {
             ),
           ],
         ),
+        floatingActionButton: _showScrollToTop
+            ? FloatingActionButton(
+                onPressed: () {
+                  _scrollController.animateTo(
+                    0,
+                    duration: const Duration(milliseconds: 1000),
+                    curve: Curves.easeInOutCubic,
+                  );
+                },
+                backgroundColor: AppTheme.primaryColor,
+                child: const Icon(Icons.arrow_upward, color: Colors.white),
+              )
+            : null,
       ),
     );
   }

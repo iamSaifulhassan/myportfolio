@@ -43,6 +43,14 @@ class AppTheme {
     ),
   ];
 
+  // Spacing
+  static const double spacingXS = 4.0;
+  static const double spacingSM = 8.0;
+  static const double spacingMD = 16.0;
+  static const double spacingLG = 24.0;
+  static const double spacingXL = 40.0;
+  static const double spacingXXL = 80.0;
+
   // Theme Data
   static ThemeData get darkTheme {
     return ThemeData(

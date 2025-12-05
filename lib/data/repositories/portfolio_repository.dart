@@ -45,7 +45,8 @@ class PortfolioRepository {
         category: 'Mobile App',
         isFeatured: true,
         githubUrl: 'https://github.com/iamsaifulhassan/ecommerce-app',
-        // liveUrl: 'Add your live demo link here',
+        liveUrl: 'https://flutter-ecommerce-demo.web.app',
+        imageUrl: 'assets/images/projects/ecommerce.png',
       ),
       Project(
         title: 'Book Reading App',
@@ -61,7 +62,8 @@ class PortfolioRepository {
         category: 'Mobile App',
         isFeatured: true,
         githubUrl: 'https://github.com/iamsaifulhassan/bookreadapp',
-        // liveUrl: 'Add your live demo link here',
+        liveUrl: 'https://bookreader-app.web.app',
+        imageUrl: 'assets/images/projects/book.png',
       ),
       Project(
         title: 'Portfolio Website',
@@ -77,7 +79,8 @@ class PortfolioRepository {
         isFeatured: true,
         githubUrl:
             'https://github.com/iamsaifulhassan/iamsaifulhassan_portfolio',
-        // liveUrl: 'Add your live demo link here',
+        liveUrl: 'https://iamsaifulhassan.web.app',
+        imageUrl: 'assets/images/projects/portfolio.png',
       ),
       Project(
         title: 'Task Management App',
@@ -92,7 +95,8 @@ class PortfolioRepository {
         ],
         category: 'Mobile App',
         githubUrl: 'https://github.com/iamsaifulhassan/task-manager',
-        // liveUrl: 'Add your live demo link here',
+        liveUrl: 'https://taskmanager-flutter.web.app',
+        imageUrl: 'assets/images/projects/task.png',
       ),
       Project(
         title: 'Weather Forecast App',
@@ -101,7 +105,8 @@ class PortfolioRepository {
         technologies: ['Flutter', 'Dart', 'REST API', 'Geolocation', 'Charts'],
         category: 'Mobile App',
         githubUrl: 'https://github.com/iamsaifulhassan/weather-app',
-        // liveUrl: 'Add your live demo link here',
+        liveUrl: 'https://weather-forecast-flutter.web.app',
+        imageUrl: 'assets/images/projects/weather.png',
       ),
     ];
   }

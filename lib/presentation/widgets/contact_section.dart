@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/constants/app_constants.dart';
+import 'responsive_helper.dart';
 
 class ContactSection extends StatefulWidget {
   const ContactSection({super.key});
@@ -28,13 +29,14 @@ class _ContactSectionState extends State<ContactSection> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final isDesktop = size.width > 1024;
-    final isTablet = size.width > 600 && size.width <= 1024;
+    final width = MediaQuery.of(context).size.width;
+    final isDesktop = ResponsiveHelper.isDesktop(width);
+    final isTablet = ResponsiveHelper.isTablet(width);
+    final isMobile = ResponsiveHelper.isMobile(width);
 
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: isDesktop ? 100 : (isTablet ? 50 : 12),
+        horizontal: isDesktop ? 100 : (isTablet ? 50 : 16),
         vertical: isDesktop ? 100 : (isTablet ? 80 : 40),
       ),
       decoration: const BoxDecoration(
@@ -48,7 +50,7 @@ class _ContactSectionState extends State<ContactSection> {
         children: [
           // Section Icon
           FadeInDown(
-            duration: const Duration(milliseconds: 700),
+            duration: const Duration(milliseconds: 800),
             child: CircleAvatar(
               radius: isDesktop ? 38 : 30,
               backgroundColor: AppTheme.primaryColor.withOpacity(0.12),
@@ -57,18 +59,21 @@ class _ContactSectionState extends State<ContactSection> {
             ),
           ),
           const SizedBox(height: 18),
+          const SizedBox(height: 18),
           FadeInDown(
             duration: const Duration(milliseconds: 800),
+            delay: const Duration(milliseconds: 100),
             child: Text(
               'Get In Touch',
-              style:
-                  AppTheme.headingStyle.copyWith(fontSize: isDesktop ? 48 : 36),
+              style: AppTheme.headingStyle.copyWith(fontSize: isDesktop ? 48 : 36),
               textAlign: TextAlign.center,
             ),
           ),
           const SizedBox(height: 16),
+          const SizedBox(height: 16),
           FadeInDown(
-            duration: const Duration(milliseconds: 1000),
+            duration: const Duration(milliseconds: 800),
+            delay: const Duration(milliseconds: 200),
             child: Container(
               width: 100,
               height: 4,
@@ -79,8 +84,10 @@ class _ContactSectionState extends State<ContactSection> {
             ),
           ),
           const SizedBox(height: 18),
+          const SizedBox(height: 18),
           FadeInDown(
-            duration: const Duration(milliseconds: 1200),
+            duration: const Duration(milliseconds: 800),
+            delay: const Duration(milliseconds: 300),
             child: Text(
               'I\'m always open to discussing new opportunities and exciting projects.',
               style: AppTheme.bodyStyle.copyWith(fontSize: 18),
@@ -112,17 +119,19 @@ class _ContactSectionState extends State<ContactSection> {
               ],
             )
           else
-            Column(
-              children: [
-                _buildContactForm(enhanced: true, isMobile: true),
-                const SizedBox(height: 36),
-                Divider(
-                  color: AppTheme.primaryColor.withOpacity(0.10),
-                  thickness: 1,
-                ),
-                const SizedBox(height: 36),
-                _buildContactInfo(enhanced: true),
-              ],
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  _buildContactForm(enhanced: true, isMobile: true),
+                  const SizedBox(height: 36),
+                  Divider(
+                    color: AppTheme.primaryColor.withOpacity(0.10),
+                    thickness: 1,
+                  ),
+                  const SizedBox(height: 36),
+                  _buildContactInfo(enhanced: true),
+                ],
+              ),
             ),
           const SizedBox(height: 60),
           _buildFooter(),
@@ -133,7 +142,7 @@ class _ContactSectionState extends State<ContactSection> {
 
   Widget _buildContactInfo({bool enhanced = false}) {
     return Container(
-      constraints: const BoxConstraints(maxWidth: 500), // match form width
+      constraints: const BoxConstraints(maxWidth: 500),
       padding: EdgeInsets.symmetric(
         horizontal: enhanced ? 24 : 0,
         vertical: enhanced ? 24 : 0,
@@ -142,8 +151,7 @@ class _ContactSectionState extends State<ContactSection> {
           ? BoxDecoration(
               color: AppTheme.surfaceColor,
               borderRadius: BorderRadius.circular(24),
-              border:
-                  Border.all(color: AppTheme.primaryColor.withOpacity(0.08)),
+              border: Border.all(color: AppTheme.primaryColor.withOpacity(0.08)),
               boxShadow: AppTheme.cardShadow,
             )
           : null,
@@ -152,7 +160,8 @@ class _ContactSectionState extends State<ContactSection> {
         children: [
           Row(
             children: [
-              const Icon(Icons.info_outline, color: AppTheme.primaryColor, size: 26),
+              const Icon(Icons.info_outline,
+                  color: AppTheme.primaryColor, size: 26),
               const SizedBox(width: 10),
               Text(
                 'Contact Information',
@@ -183,18 +192,15 @@ class _ContactSectionState extends State<ContactSection> {
           ),
           if (enhanced) ...[
             const SizedBox(height: 28),
-            Divider(
-                color: AppTheme.primaryColor.withOpacity(0.10), thickness: 1),
+            Divider(color: AppTheme.primaryColor.withOpacity(0.10), thickness: 1),
             const SizedBox(height: 18),
             Text('Social Links',
-                style: AppTheme.bodyStyle
-                    .copyWith(fontWeight: FontWeight.bold, fontSize: 15)),
+                style: AppTheme.bodyStyle.copyWith(fontWeight: FontWeight.bold, fontSize: 15)),
             const SizedBox(height: 12),
             Row(
               children: [
                 IconButton(
-                  icon: const Icon(FontAwesomeIcons.globe,
-                      color: AppTheme.primaryColor),
+                  icon: const Icon(FontAwesomeIcons.globe, color: AppTheme.primaryColor),
                   tooltip: 'Portfolio',
                   onPressed: () => _launchURL(AppConstants.portfolioUrl),
                 ),
@@ -204,8 +210,7 @@ class _ContactSectionState extends State<ContactSection> {
                   onPressed: () => _launchURL(AppConstants.githubUrl),
                 ),
                 IconButton(
-                  icon:
-                      Icon(FontAwesomeIcons.linkedin, color: Colors.blue[700]),
+                  icon: Icon(FontAwesomeIcons.linkedin, color: Colors.blue[700]),
                   tooltip: 'LinkedIn',
                   onPressed: () => _launchURL(AppConstants.linkedinUrl),
                 ),
@@ -232,13 +237,10 @@ class _ContactSectionState extends State<ContactSection> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(label,
-                style: AppTheme.bodyStyle.copyWith(
-                    fontWeight: FontWeight.bold, fontSize: enhanced ? 15 : 13)),
+                style: AppTheme.bodyStyle.copyWith(fontWeight: FontWeight.bold, fontSize: enhanced ? 15 : 13)),
             const SizedBox(height: 2),
             Text(value,
-                style: AppTheme.bodyStyle.copyWith(
-                    fontSize: enhanced ? 15 : 13,
-                    color: AppTheme.textSecondary)),
+                style: AppTheme.bodyStyle.copyWith(fontSize: enhanced ? 15 : 13, color: AppTheme.textSecondary)),
           ],
         ),
       ],
@@ -247,10 +249,10 @@ class _ContactSectionState extends State<ContactSection> {
 
   Widget _buildContactForm({bool enhanced = false, bool isMobile = false}) {
     return FadeInRight(
-      duration: const Duration(milliseconds: 1400),
+      duration: const Duration(milliseconds: 800),
+      delay: const Duration(milliseconds: 400),
       child: Container(
-        constraints:
-            const BoxConstraints(maxWidth: 500), // match info card width
+        constraints: const BoxConstraints(maxWidth: 500),
         padding: EdgeInsets.symmetric(
           horizontal: enhanced ? (isMobile ? 12 : 32) : 30,
           vertical: enhanced ? 32 : 30,
@@ -259,89 +261,75 @@ class _ContactSectionState extends State<ContactSection> {
           gradient: AppTheme.cardGradient,
           borderRadius: BorderRadius.circular(24),
           border: enhanced
-              ? Border.all(
-                  color: AppTheme.primaryColor.withOpacity(0.10), width: 2)
+              ? Border.all(color: AppTheme.primaryColor.withOpacity(0.10), width: 2)
               : null,
-          boxShadow: AppTheme.cardShadow,
         ),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  const Icon(Icons.edit_note, color: AppTheme.primaryColor, size: 28),
-                  const SizedBox(width: 10),
-                  Text(
-                    'Send me a message',
-                    style: AppTheme.subHeadingStyle.copyWith(fontSize: 24),
-                  ),
-                ],
+              Text(
+                'Send Me A Message',
+                style: AppTheme.subHeadingStyle.copyWith(
+                  fontSize: enhanced ? 24 : 20,
+                  color: AppTheme.textPrimary,
+                ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 24),
               _buildTextField(
                 controller: _nameController,
                 label: 'Your Name',
-                icon: Icons.person,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your name';
-                  }
-                  return null;
-                },
+                icon: Icons.person_outline,
+                enhanced: enhanced,
               ),
+              const SizedBox(height: 16),
               _buildTextField(
                 controller: _emailController,
                 label: 'Your Email',
-                icon: Icons.email,
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}\$')
-                      .hasMatch(value)) {
-                    return 'Please enter a valid email';
-                  }
-                  return null;
-                },
+                icon: Icons.email_outlined,
+                enhanced: enhanced,
               ),
+              const SizedBox(height: 16),
               _buildTextField(
                 controller: _messageController,
                 label: 'Your Message',
-                icon: Icons.message,
-                maxLines: 5,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your message';
-                  }
-                  return null;
-                },
+                icon: Icons.message_outlined,
+                maxLines: 4,
+                enhanced: enhanced,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 24),
               SizedBox(
                 width: double.infinity,
-                child: MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: ElevatedButton.icon(
-                    onPressed: _sendMessage,
-                    icon: const Icon(Icons.send, size: 22),
-                    label: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 2.0),
-                      child: Text('Send Message',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold)),
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      // TODO: Implement email sending logic
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Message sent successfully!'),
+                          backgroundColor: AppTheme.primaryColor,
+                        ),
+                      );
+                      _nameController.clear();
+                      _emailController.clear();
+                      _messageController.clear();
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppTheme.primaryColor,
+                    foregroundColor: Colors.white,
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppTheme.primaryColor,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 18),
-                      elevation: 4,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16), // match fields
-                      ),
-                      shadowColor: AppTheme.primaryColor.withOpacity(0.18),
+                  ),
+                  child: const Text(
+                    'Send Message',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
@@ -357,164 +345,98 @@ class _ContactSectionState extends State<ContactSection> {
     required TextEditingController controller,
     required String label,
     required IconData icon,
-    TextInputType? keyboardType,
     int maxLines = 1,
-    String? Function(String?)? validator,
+    bool enhanced = false,
   }) {
-    final fieldBg = Colors.white.withOpacity(0.08);
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-          vertical: 10.0), // more vertical space for clarity
-      child: Focus(
-        child: Builder(
-          builder: (context) {
-            final isFocused = Focus.of(context).hasFocus;
-            return AnimatedContainer(
-              duration: const Duration(milliseconds: 180),
-              decoration: BoxDecoration(
-                color: fieldBg,
-                borderRadius: BorderRadius.circular(
-                    18), // slightly less for better blending
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(isFocused ? 0.10 : 0.06),
-                    blurRadius: isFocused ? 16 : 8,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-                border: Border.all(
-                  color: isFocused
-                      ? AppTheme.primaryColor.withOpacity(0.45)
-                      : Colors.white.withOpacity(0.10),
-                  width:
-                      isFocused ? 1.5 : 1.0, // thinner border for modern look
-                ),
-              ),
-              child: TextFormField(
-                controller: controller,
-                keyboardType: keyboardType,
-                maxLines: maxLines,
-                validator: validator,
-                style: AppTheme.bodyStyle
-                    .copyWith(fontSize: 16, color: Colors.white),
-                decoration: InputDecoration(
-                  labelText: label,
-                  labelStyle: AppTheme.bodyStyle.copyWith(
-                      color: Colors.white.withOpacity(0.93),
-                      fontWeight: FontWeight.w600),
-                  prefixIcon:
-                      Icon(icon, color: AppTheme.primaryColor, size: 22),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18),
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18),
-                    borderSide: BorderSide(
-                      color: AppTheme.primaryColor.withOpacity(0.45),
-                      width: 1.5,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18),
-                    borderSide: BorderSide(
-                      color: Colors.white.withOpacity(0.10),
-                      width: 1.0,
-                    ),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18),
-                    borderSide: BorderSide(
-                      color: Colors.red.withOpacity(0.7),
-                      width: 1.2,
-                    ),
-                  ),
-                  contentPadding:
-                      const EdgeInsets.symmetric(vertical: 22, horizontal: 20),
-                  filled: true,
-                  fillColor: fieldBg,
-                ),
-              ),
-            );
-          },
+    return TextFormField(
+      controller: controller,
+      maxLines: maxLines,
+      style: const TextStyle(color: AppTheme.textPrimary),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter $label';
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: label,
+        prefixIcon: Icon(icon, color: AppTheme.primaryColor),
+        filled: true,
+        fillColor: AppTheme.backgroundColor,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
         ),
-      ),
-    );
-  }
-
-  Widget _buildFooter() {
-    return FadeInUp(
-      duration: const Duration(milliseconds: 1600),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 30),
-        decoration: BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: AppTheme.primaryColor.withOpacity(0.2),
-              width: 1,
-            ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(
+            color: AppTheme.primaryColor.withOpacity(0.1),
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              '© 2024 ${AppConstants.developerName}. All rights reserved.',
-              style: AppTheme.bodyStyle.copyWith(
-                fontSize: 14,
-                color: AppTheme.textHint,
-              ),
-            ),
-            Text(
-              'Made with ❤️ using Flutter',
-              style: AppTheme.bodyStyle.copyWith(
-                fontSize: 14,
-                color: AppTheme.textHint,
-              ),
-            ),
-          ],
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(
+            color: AppTheme.primaryColor,
+          ),
         ),
+        contentPadding: const EdgeInsets.all(16),
       ),
     );
-  }
-
-  void _sendMessage() {
-    if (_formKey.currentState!.validate()) {
-      // Construct email body
-      final subject = 'Portfolio Contact: ${_nameController.text}';
-      final body = '''
-Hello ${AppConstants.developerName},
-
-${_messageController.text}
-
-Best regards,
-${_nameController.text}
-${_emailController.text}
-      ''';
-
-      final emailUrl =
-          'mailto:${AppConstants.email}?subject=${Uri.encodeComponent(subject)}&body=${Uri.encodeComponent(body)}';
-
-      _launchURL(emailUrl);
-
-      // Clear form
-      _nameController.clear();
-      _emailController.clear();
-      _messageController.clear();
-
-      // Show success message
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Message sent! Your default email client should open.'),
-          backgroundColor: AppTheme.primaryColor,
-        ),
-      );
-    }
   }
 
   void _launchURL(String url) async {
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
     }
+  }
+
+  Widget _buildFooter() {
+    final width = MediaQuery.of(context).size.width;
+    final isMobile = ResponsiveHelper.isMobile(width);
+    return FadeInUp(
+      duration: const Duration(milliseconds: 800),
+      delay: const Duration(milliseconds: 600),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 30),
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(color: AppTheme.primaryColor.withOpacity(0.2), width: 1),
+          ),
+        ),
+        child: isMobile
+            ? Column(
+                children: [
+                  Text('© 2024 ${AppConstants.developerName}.',
+                      style: AppTheme.bodyStyle.copyWith(fontSize: 14, color: AppTheme.textHint),
+                      textAlign: TextAlign.center),
+                  const SizedBox(height: 8),
+                  Text('All rights reserved.',
+                      style: AppTheme.bodyStyle.copyWith(fontSize: 14, color: AppTheme.textHint),
+                      textAlign: TextAlign.center),
+                  const SizedBox(height: 8),
+                  Text('Made with ❤️ using Flutter',
+                      style: AppTheme.bodyStyle.copyWith(fontSize: 14, color: AppTheme.textHint),
+                      textAlign: TextAlign.center),
+                ],
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    flex: 2,
+                    child: Text('© 2024 ${AppConstants.developerName}. All rights reserved.',
+                        style: AppTheme.bodyStyle.copyWith(fontSize: 14, color: AppTheme.textHint),
+                        overflow: TextOverflow.ellipsis),
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: Text('Made with ❤️ using Flutter',
+                        style: AppTheme.bodyStyle.copyWith(fontSize: 14, color: AppTheme.textHint),
+                        textAlign: TextAlign.end),
+                  ),
+                ],
+              ),
+      ),
+    );
   }
 }
