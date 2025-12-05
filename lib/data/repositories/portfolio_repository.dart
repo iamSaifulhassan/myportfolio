@@ -51,7 +51,7 @@ class PortfolioRepository {
       Project(
         title: 'Book Reading App',
         description:
-            'A mobile application for book lovers with reading features, bookmarks, and personalized recommendations.',
+            'A mobile application for book lovers with reading features, bookmarks, and listening features and personalization settings.',
         technologies: [
           'Flutter',
           'Dart',
