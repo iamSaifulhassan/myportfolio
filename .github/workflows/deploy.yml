@@ -19,7 +19,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.2'  # Dart >= 3.4.0, works with http ^1.6.0
+          flutter-version: '3.27.0'   # <-- IMPORTANT: new Flutter with Color.withValues
           channel: 'stable'
           cache: true
 
