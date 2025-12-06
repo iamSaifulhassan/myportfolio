@@ -60,7 +60,12 @@ git push origin main --force
 
 If you want to preserve all history and simply rename the branch:
 
-**Using Git Command Line:**
+**Step 1: Change the default branch first (Required)**
+1. Go to GitHub **Settings** → **Branches**
+2. Change the default branch from `main` to `master` temporarily
+   (You cannot delete the default branch, so this step is required)
+
+**Step 2: Using Git Command Line:**
 ```bash
 # Clone the repository
 git clone https://github.com/iamSaifulhassan/portfolio.git
@@ -69,27 +74,27 @@ cd portfolio
 # Checkout master
 git checkout master
 
-# Rename master to main
+# Rename master to main locally
 git branch -m master main
 
-# Delete the old main branch on remote
+# Delete the old main branch on remote (now possible since it's not default)
 git push origin --delete main
 
 # Push the renamed main branch
 git push -u origin main
 
-# Delete master branch from remote
+# Delete master branch from remote (optional)
 git push origin --delete master
 ```
 
-Then on GitHub:
-1. Go to **Settings** → **Branches**
+**Step 3: Set main as default again**
+1. Go to GitHub **Settings** → **Branches**
 2. Set `main` as the default branch
 
 ## After Fixing
 
 Once you've synchronized the branches:
-- `main` will contain all 25 commits from your development work
+- `main` will contain all commits from your development work
 - You can optionally delete the `master` branch if you no longer need it
 - Future work should be done against the `main` branch
 
