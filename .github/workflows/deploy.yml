@@ -18,6 +18,11 @@ jobs:
       with:
         flutter-version: '3.19.0'
         channel: 'stable'
+    - name: Create .env file
+      run: |
+        echo "EMAILJS_SERVICE_ID=${{ secrets.EMAILJS_SERVICE_ID }}" > .env
+        echo "EMAILJS_TEMPLATE_ID=${{ secrets.EMAILJS_TEMPLATE_ID }}" >> .env
+        echo "EMAILJS_PUBLIC_KEY=${{ secrets.EMAILJS_PUBLIC_KEY }}" >> .env
 
     - name: Install dependencies
       run: flutter pub get
