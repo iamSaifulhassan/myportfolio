@@ -16,6 +16,8 @@ dependencies:
   animate_do: ^3.1.2
   flutter_svg: ^2.0.10
   email_launcher: ^1.1.1
+  http: ^1.6.0
+  flutter_dotenv: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -39,4 +41,6 @@ flutter:
     - assets/images/tech/laravel.svg
     - assets/images/tech/androidstudio.svg
     - assets/images/tech/vscode.svg
+    - assets/images/tech/vscode.svg
     - assets/files/
+    - .env

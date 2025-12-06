@@ -1,3 +1,5 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class AppConstants {
   static const String appName = 'Saiful Hassan Portfolio';
   static const String developerName = 'Saiful Hassan';
@@ -5,14 +7,15 @@ class AppConstants {
   static const String aboutMe =
       '''I am a passionate Flutter developer with expertise in creating beautiful, 
 responsive mobile applications. I love turning ideas into reality through clean, 
-efficient code and stunning user interfaces.'''; // Contact Information
+efficient code and stunning user interfaces.''';
+
+  // Contact Information
   static const String email = 'saifulhassan708@gmail.com';
   static const String phone = '+92 3269878494';
   static const String linkedIn = 'https://linkedin.com/in/iamsaifulhassan';
   static const String github = 'https://github.com/iamsaifulhassan';
   static const String website = 'https://iamsaifulhassan.github.io';
-  static const String cvUrl =
-      'assets/files/saifulhassan_cv.pdf'; // Local asset path for CV
+  static const String cvUrl = 'assets/files/saifulhassan_cv.pdf';
 
   // Social Media
   static const String twitter = 'https://twitter.com/iamsaifulhassan';
@@ -37,10 +40,13 @@ efficient code and stunning user interfaces.'''; // Contact Information
     'Mobile Development',
   ];
 
-  // Projects are now managed in PortfolioRepository
-
   // Portfolio URLs
   static const String portfolioUrl = website;
   static const String githubUrl = github;
   static const String linkedinUrl = linkedIn;
+
+  // EmailJS Configuration
+  static String get serviceId => dotenv.env['EMAILJS_SERVICE_ID'] ?? '';
+  static String get templateId => dotenv.env['EMAILJS_TEMPLATE_ID'] ?? '';
+  static String get publicKey => dotenv.env['EMAILJS_PUBLIC_KEY'] ?? '';
 }
