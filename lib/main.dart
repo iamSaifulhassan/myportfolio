@@ -5,7 +5,11 @@ import 'presentation/pages/portfolio_page.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
-  await dotenv.load(fileName: ".env");
+  try {
+    await dotenv.load(fileName: ".env");
+  } catch (e) {
+    debugPrint("Warning: Could not load .env file: $e");
+  }
   runApp(const MyPortfolioApp());
 }
 

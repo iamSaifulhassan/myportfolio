@@ -167,8 +167,9 @@ class HeroSection extends StatelessWidget {
   }
 
   Widget _buildImageContent({bool isMobile = false}) {
-    // More responsive sizing based on screen width
-    final imageSize = isMobile ? 250.0 : 320.0;
+    // Responsive sizing logic
+    final double imageSize = isMobile ? 260.0 : 350.0;
+    final double borderWidth = isMobile ? 6.0 : 8.0;
 
     return FadeInRight(
       duration: const Duration(milliseconds: 800),
@@ -180,49 +181,54 @@ class HeroSection extends StatelessWidget {
           shape: BoxShape.circle,
           gradient: const LinearGradient(
             colors: [
-              Color(0xFF1E88E5), // Blue
+              Color(0xFF2196F3), // Blue
               Color(0xFF00BCD4), // Cyan
-              Color(0xFF26C6DA), // Light Cyan
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF1E88E5).withOpacity(0.4),
-              blurRadius: 30,
-              offset: const Offset(0, 15),
+              color: const Color(0xFF1E88E5).withOpacity(0.5),
+              blurRadius: 40,
+              offset: const Offset(0, 20),
             ),
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(6.0),
-          child: ClipOval(
-            child: SizedBox(
-              width: imageSize - 12,
-              height: imageSize - 12,
-              child: Image.asset(
-                'assets/images/Profile.jpg',
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Color(0xFF1E88E5), // Blue
-                          Color(0xFF00BCD4), // Cyan
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
+          padding: EdgeInsets.all(borderWidth),
+          child: Container(
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppTheme.backgroundColor, // Match background to avoid white edges
+            ),
+            child: ClipOval(
+              child: SizedBox(
+                width: imageSize - (borderWidth * 2),
+                height: imageSize - (borderWidth * 2),
+                child: Image.asset(
+                  'assets/images/profileimg.png',
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color(0xFF1E88E5), // Blue
+                            Color(0xFF00BCD4), // Cyan
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
                       ),
-                    ),
-                    child: const Icon(
-                      Icons.person,
-                      size: 150,
-                      color: Colors.white,
-                    ),
-                  );
-                },
+                      child: const Icon(
+                        Icons.person,
+                        size: 150,
+                        color: Colors.white,
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ),
