@@ -356,10 +356,10 @@ class PortfolioRepository {
     return [
       Education(
         institution: 'Comsats University Islamabad, Wah Campus',
-        degree: 'Bachelor of Science',
+        degree: 'Bachelor of Science in Software Engineering',
         field: 'Software Engineering',
         duration: '2022 - Present',
-        grade: 'CGPA: 3.64/4.00',
+        grade: 'CGPA: 3.55/4.00',
         description:
             'Specialized in Software Engineering and Mobile Application Development',
       ),

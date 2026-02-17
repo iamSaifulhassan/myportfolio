@@ -27,7 +27,7 @@ class EducationCard extends StatelessWidget {
                 child: Text(
                   education.degree,
                   style: AppTheme.subHeadingStyle.copyWith(
-                    fontSize: 20,
+                    fontSize: 16,
                     color: AppTheme.primaryColor,
                   ),
                 ),
