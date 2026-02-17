@@ -163,7 +163,14 @@ class _ProjectDetailPopupState extends State<ProjectDetailPopup> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: AppTheme.primaryGradient,
+        gradient: LinearGradient(
+          colors: [
+            AppTheme.primaryColor.withOpacity(0.9),
+            AppTheme.accentColor.withOpacity(0.85),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
       ),
       child: Row(
         children: [
@@ -321,7 +328,7 @@ class _ProjectDetailPopupState extends State<ProjectDetailPopup> {
             controller: _youtubeController!,
             showVideoProgressIndicator: true,
             progressIndicatorColor: AppTheme.primaryColor,
-            progressColors: ProgressBarColors(
+            progressColors: const ProgressBarColors(
               playedColor: AppTheme.primaryColor,
               handleColor: AppTheme.accentColor,
             ),
@@ -372,7 +379,7 @@ class _ProjectDetailPopupState extends State<ProjectDetailPopup> {
                     margin: const EdgeInsets.only(top: 6, right: 12),
                     width: 6,
                     height: 6,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: AppTheme.primaryGradient,
                       shape: BoxShape.circle,
                     ),

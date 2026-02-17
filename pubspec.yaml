@@ -32,6 +32,7 @@ flutter:
     - assets/images/
     - assets/images/projects/
     - assets/images/jpmorgan.png
+    - assets/images/easports.png
     - assets/images/tech/flutter.svg
     - assets/images/tech/dart.svg
     - assets/images/tech/firebase.svg

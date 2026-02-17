@@ -26,7 +26,7 @@ efficient code and stunning user interfaces.''';
   static const String location = 'Islamabad, Pakistan';
   static const String experience = '1+ Years';
   static const String projectsCompleted = '10+';
-  static const String happyClients = '30+';
+  static const String paidprojects = '3+';
 
   // Skills
   static const List<String> skills = [

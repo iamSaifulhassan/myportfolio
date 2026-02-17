@@ -3,7 +3,9 @@ import 'package:animate_do/animate_do.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/constants/app_constants.dart';
+import '../../data/repositories/portfolio_repository.dart';
 import 'responsive_helper.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutSection extends StatelessWidget {
   const AboutSection({super.key});
@@ -111,7 +113,8 @@ class AboutSection extends StatelessWidget {
   }
 
   Widget _buildStatsSection(BuildContext context, bool isDesktop) {
-    final isMobile = ResponsiveHelper.isMobile(MediaQuery.of(context).size.width);
+    final isMobile =
+        ResponsiveHelper.isMobile(MediaQuery.of(context).size.width);
 
     return Column(
       children: [
@@ -162,18 +165,9 @@ class AboutSection extends StatelessWidget {
                 alignment: WrapAlignment.center,
                 spacing: isMobile ? 16 : 24,
                 runSpacing: isMobile ? 16 : 24,
-                children: [
-                  _buildCertIcon(context, FontAwesomeIcons.aws,
-                      const Color(0xFFFF9900), 'AWS'),
-                  _buildCertIcon(context, FontAwesomeIcons.database,
-                      const Color(0xFFF80000), 'Oracle'),
-                  _buildCertIcon(context, FontAwesomeIcons.hackerrank,
-                      const Color(0xFF2EC866), 'Hackerrank'),
-                  _buildCertIcon(context, FontAwesomeIcons.buildingColumns,
-                      const Color(0xFF0071C5), 'JP Morgan'),
-                  _buildCertIcon(context, Icons.school, const Color(0xFF1E90FF),
-                      'Mindluster'),
-                ],
+                children: PortfolioRepository.getCertifications()
+                    .map((cert) => _buildCertIcon(context, cert, isMobile))
+                    .toList(),
               ),
             ),
           ],
@@ -185,7 +179,7 @@ class AboutSection extends StatelessWidget {
   List<Widget> _buildStatItems() {
     return [
       _buildStatItem('Projects Completed', AppConstants.projectsCompleted),
-      _buildStatItem('Happy Clients', AppConstants.happyClients),
+      _buildStatItem('Paid Projects', AppConstants.paidprojects),
       _buildStatItem('Years Experience', AppConstants.experience),
       _buildStatItem('Technologies', '15+'),
     ];
@@ -227,64 +221,92 @@ class AboutSection extends StatelessWidget {
   }
 
   Widget _buildCertIcon(
-      BuildContext context, IconData icon, Color color, String name) {
-    final isMobile = ResponsiveHelper.isMobile(MediaQuery.of(context).size.width);
-
+      BuildContext context, Map<String, String> cert, bool isMobile) {
     final iconSize = isMobile ? 24.0 : 30.0;
     final containerSize = isMobile ? 40.0 : 50.0;
+    final name = cert['name']!;
+    final certificateUrl = cert['certificateUrl']!;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          width: containerSize,
-          height: containerSize,
-          padding: EdgeInsets.all(isMobile ? 7 : 10),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 8,
-                offset: const Offset(0, 2),
+    // Map certification names to icons and colors
+    IconData? iconData;
+    Color iconColor = AppTheme.primaryColor;
+    String? imagePath;
+
+    switch (name) {
+      case 'Amazon AWS':
+        iconData = FontAwesomeIcons.aws;
+        iconColor = const Color(0xFFFF9900);
+        break;
+      case 'Oracle':
+        imagePath = 'assets/images/oracle.png';
+        break;
+      case 'Hackerrank':
+        iconData = FontAwesomeIcons.hackerrank;
+        iconColor = const Color(0xFF2EC866);
+        break;
+      case 'JP Morgan':
+        imagePath = 'assets/images/jpmorgan.png';
+        break;
+      case 'Mindluster':
+        imagePath = 'assets/images/Mindluster.png';
+        break;
+      case 'EA Sports':
+        imagePath = 'assets/images/easports.png';
+        break;
+      default:
+        iconData = Icons.verified;
+    }
+
+    return GestureDetector(
+      onTap: () => _launchURL(certificateUrl),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: containerSize,
+              height: containerSize,
+              padding: EdgeInsets.all(isMobile ? 7 : 10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
               ),
-            ],
-          ),
-          child: name == 'JP Morgan'
-              ? Image.asset(
-                  'assets/images/jpmorgan.png',
-                  width: iconSize,
-                  height: iconSize,
-                  fit: BoxFit.contain,
-                )
-              : name == 'Oracle'
+              child: imagePath != null
                   ? Image.asset(
-                      'assets/images/oracle.png',
+                      imagePath,
                       width: iconSize,
                       height: iconSize,
                       fit: BoxFit.contain,
                     )
-                  : name == 'Mindluster'
-                      ? Image.asset(
-                          'assets/images/Mindluster.png',
-                          width: iconSize,
-                          height: iconSize,
-                          fit: BoxFit.contain,
-                        )
-                      : Icon(icon, size: iconSize, color: color),
+                  : Icon(iconData, size: iconSize, color: iconColor),
+            ),
+            SizedBox(height: isMobile ? 6 : 8),
+            Text(
+              name,
+              style: AppTheme.bodyStyle.copyWith(
+                fontSize: isMobile ? 12 : 14,
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
-        SizedBox(height: isMobile ? 6 : 8),
-        Text(
-          name,
-          style: AppTheme.bodyStyle.copyWith(
-            fontSize: isMobile ? 12 : 14,
-            color: Colors.white,
-            fontWeight: FontWeight.w500,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ],
+      ),
     );
+  }
+
+  void _launchURL(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+    }
   }
 }

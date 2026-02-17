@@ -8,28 +8,44 @@ class PortfolioRepository {
   static const int projectsCompleted = 10;
   static const int skillsLearned = 15;
 
-  // Certifications with logos
+  // Certifications with logos and links
   static List<Map<String, String>> getCertifications() {
     return [
       {
         'name': 'Amazon AWS',
         'icon': 'FontAwesomeIcons.aws',
+        'certificateUrl':
+            'https://drive.google.com/file/d/YOUR_AWS_CERT_ID/view', // Replace with your certificate link
       },
       {
         'name': 'Oracle',
         'icon': 'FontAwesomeIcons.oracle',
+        'certificateUrl':
+            'https://drive.google.com/file/d/YOUR_ORACLE_CERT_ID/view',
       },
       {
         'name': 'Mindluster',
         'icon': 'Icons.school',
+        'certificateUrl':
+            'https://drive.google.com/file/d/YOUR_MINDLUSTER_CERT_ID/view',
       },
       {
         'name': 'Hackerrank',
         'icon': 'FontAwesomeIcons.hackerrank',
+        'certificateUrl':
+            'https://drive.google.com/file/d/YOUR_HACKERRANK_CERT_ID/view',
       },
       {
         'name': 'JP Morgan',
         'icon': 'FontAwesomeIcons.building',
+        'certificateUrl':
+            'https://drive.google.com/file/d/YOUR_JPMORGAN_CERT_ID/view',
+      },
+      {
+        'name': 'EA Sports',
+        'icon': 'FontAwesomeIcons.gamepad',
+        'certificateUrl':
+            'https://drive.google.com/file/d/YOUR_EA_CERT_ID/view',
       },
     ];
   }
