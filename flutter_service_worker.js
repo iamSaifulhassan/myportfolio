@@ -3,7 +3,7 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"favicon.png": "5dcef449791fa27946b3d35ad8803796",
+const RESOURCES = {"favicon.png": "0b7c669df1e2781d42b8a12eed31dbc1",
 "assets/AssetManifest.json": "f76f3646eeb280d4d0532f867e267757",
 "assets/assets/files/saifulhassan_cv.pdf": "3ac6362f5163255728ed476125b9951e",
 "assets/assets/images/profileimg.png": "0b7c669df1e2781d42b8a12eed31dbc1",
@@ -42,10 +42,10 @@ const RESOURCES = {"favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "assets/shaders/ink_sparkle.frag": "ecc85a2e95f5e9f53123dcaf8cb9b6ce",
 "assets/AssetManifest.bin": "cd6b96eaa50fb2559065df088d3ceab2",
 "assets/FontManifest.json": "5a32d4310a6f5d9a6b651e75ba0d7372",
-"index.html": "5b63459a8d166b7875e72e8caf91ff9e",
-"/": "5b63459a8d166b7875e72e8caf91ff9e",
+"index.html": "201429139289c83df71a6404f66243a9",
+"/": "201429139289c83df71a6404f66243a9",
 "manifest.json": "5fb2b4039ebe75e31c54c1227d6b6e9e",
-"flutter_bootstrap.js": "ecb8db46f9e77b0986e6d4e462d1f453",
+"flutter_bootstrap.js": "e906f5803ed043efaa9800c5245f8528",
 "main.dart.js": "bb992e168b0249281c28be795bf9379d",
 "flutter.js": "4b2350e14c6650ba82871f60906437ea",
 "canvaskit/skwasm.js.symbols": "96263e00e3c9bd9cd878ead867c04f3c",
