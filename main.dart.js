@@ -85771,7 +85771,7 @@ $1(a){var s=null,r="Experience",q="Projects",p="Education",o=t.N
 return A.b([A.tZ(A.av("Home",s,s,s,s,s,s),!0,48,s,s,s,s,s,"Home",o),A.tZ(A.av("About",s,s,s,s,s,s),!0,48,s,s,s,s,s,"About",o),A.tZ(A.av(r,s,s,s,s,s,s),!0,48,s,s,s,s,s,r,o),A.tZ(A.av("Skills",s,s,s,s,s,s),!0,48,s,s,s,s,s,"Skills",o),A.tZ(A.av(q,s,s,s,s,s,s),!0,48,s,s,s,s,s,q,o),A.tZ(A.av(p,s,s,s,s,s,s),!0,48,s,s,s,s,s,p,o),A.tZ(A.av("Contact",s,s,s,s,s,s),!0,48,s,s,s,s,s,"Contact",o)],t.Do)},
 $S:520}
 A.KJ.prototype={
-J(a){var s=null,r=A.bL(16),q=this.c,p=A.dh(A.av(q.b,s,s,s,A.b6().$3$color$fontSize$fontWeight(B.e,24,B.aC).dI(B.l,20),s,s),1),o=A.bL(20),n=t.p
+J(a){var s=null,r=A.bL(16),q=this.c,p=A.dh(A.av(q.b,s,s,s,A.b6().$3$color$fontSize$fontWeight(B.e,24,B.aC).dI(B.l,16),s,s),1),o=A.bL(20),n=t.p
 o=A.b([A.cd(A.b([p,A.b0(s,A.av(q.d,s,s,s,B.VU,s,s),B.n,s,s,new A.ba(s,s,s,o,s,B.cS,B.C),s,s,s,B.fT,s,s,s)],n),B.x,B.dK,B.p),B.da,A.av(q.a,s,s,s,A.b6().$3$color$fontSize$height(B.E,16,1.6).nF(B.e,16,B.aC),s,s)],n)
 p=A.b6().$3$color$fontSize$height(B.E,16,1.6)
 B.b.N(o,A.b([B.TL,A.av(q.e,s,s,s,p.nF(B.mf,14,B.O),s,s)],n))
@@ -85780,7 +85780,7 @@ B.b.N(o,A.b([B.d8,A.av(q.f,s,s,s,p.G7(1.5),s,s)],n))
 return A.b0(s,A.bE(o,B.S,s,B.q,B.p),B.n,s,s,new A.ba(B.er,s,s,r,B.dJ,s,B.C),s,s,B.n2,B.n5,s,s,s)}}
 A.KK.prototype={
 J(a){return new A.pq(new A.a4l(this),null)},
-LL(a){var s=null,r=A.b([new A.oS("Comsats University Islamabad, Wah Campus","Bachelor of Science","Software Engineering","2022 - Present","CGPA: 3.64/4.00","Specialized in Software Engineering and Mobile Application Development")],t.sQ),q=A.b([A.av("Education",s,s,s,A.b6().$3$color$fontSize$fontWeight(B.e,24,B.aC).dI(B.l,a),s,s),B.cu],t.p),p=new A.zK(r,t.o8)
+LL(a){var s=null,r=A.b([new A.oS("Comsats University Islamabad, Wah Campus","Bachelor of Science in Software Engineering","Software Engineering","2022 - Present","CGPA: 3.55/4.00","Specialized in Software Engineering and Mobile Application Development")],t.sQ),q=A.b([A.av("Education",s,s,s,A.b6().$3$color$fontSize$fontWeight(B.e,24,B.aC).dI(B.l,a),s,s),B.cu],t.p),p=new A.zK(r,t.o8)
 B.b.N(q,p.geJ(p).hc(0,new A.a4k(r),t.l7))
 return A.L1(A.bE(q,B.S,s,B.q,B.p),B.I,B.V)},
 LH(a){var s="Oracle Corporation",r=null,q=t.s,p=t.N,o=t.K,n=A.b([A.a1(["title","IBM Certified Flutter Developer","issuer","IBM","date","June 2024- Present","credentialId","Ongoing","url","https://developers.google.com/certification/flutter","skills",A.b(["Flutter","Dart","Mobile Development","State Management","Firebase"],q)],p,o),A.a1(["title","Database for Developers: Foundations","issuer",s,"date","May 2023","credentialId","571065","url","https://drive.google.com/file/d/1k0JdU-Xo6rSvsQa40AJpoKipWV_VwVil/view?usp=drive_link","skills",A.b(["Oracle","Databases","CRUD Operations","SQL"],q)],p,o),A.a1(["title","Database for Developers: Next Level","issuer",s,"date","June 2024 - Present","credentialId","571065","url","https://drive.google.com/file/d/17o3JekT2jZrT7F_ggY3j_3pnkgJn06kK/view?usp=drive_link","skills",A.b(["Structured Databases","Normalization","Transaction Management","Recovery & Backup"],q)],p,o),A.a1(["title","Amazon Cloud Practitioner (AWS)","issuer","Amazon Web Services","date","August 2025","credentialId","AWS-CP-123456","url","https://www.aws.training/Certification","skills",A.b(["AWS Cloud","Cloud Computing","Security","Billing & Pricing","Cloud Architecture"],q)],p,o)],t.Mq)
