@@ -5,6 +5,7 @@ import '../../core/themes/app_theme.dart';
 import '../../data/repositories/portfolio_repository.dart';
 import '../../data/models/project.dart';
 import 'responsive_helper.dart';
+import 'project_detail_popup.dart';
 
 class ProjectsSection extends StatefulWidget {
   const ProjectsSection({super.key});
@@ -224,6 +225,15 @@ class _ImmersiveProjectCardState extends State<_ImmersiveProjectCard> {
     }
   }
 
+  void _openProjectDetails() {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierColor: Colors.transparent,
+      builder: (context) => ProjectDetailPopup(project: widget.project),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
@@ -391,7 +401,8 @@ class _ImmersiveProjectCardState extends State<_ImmersiveProjectCard> {
                       // Action Buttons
                       Row(
                         children: [
-                          if (widget.project.liveUrl != null)
+                          // Download button (shown if downloadUrl exists)
+                          if (widget.project.downloadUrl != null)
                             Expanded(
                               child: Container(
                                 height: 44,
@@ -409,7 +420,7 @@ class _ImmersiveProjectCardState extends State<_ImmersiveProjectCard> {
                                 ),
                                 child: ElevatedButton(
                                   onPressed: () =>
-                                      _launchURL(widget.project.liveUrl!),
+                                      _launchURL(widget.project.downloadUrl!),
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.transparent,
                                     shadowColor: Colors.transparent,
@@ -419,7 +430,7 @@ class _ImmersiveProjectCardState extends State<_ImmersiveProjectCard> {
                                     ),
                                   ),
                                   child: const Text(
-                                    'View Live',
+                                    'Download',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -428,39 +439,37 @@ class _ImmersiveProjectCardState extends State<_ImmersiveProjectCard> {
                                 ),
                               ),
                             ),
-                          if (widget.project.liveUrl != null &&
-                              widget.project.githubUrl != null)
+                          if (widget.project.downloadUrl != null)
                             const SizedBox(width: 12),
-                          if (widget.project.githubUrl != null)
-                            Expanded(
-                              child: Container(
-                                height: 44,
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.1),
-                                  borderRadius: BorderRadius.circular(12),
-                                  border: Border.all(
-                                    color: Colors.white.withOpacity(0.3),
+                          // Read More button (always shown)
+                          Expanded(
+                            child: Container(
+                              height: 44,
+                              decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: Colors.white.withOpacity(0.3),
+                                ),
+                              ),
+                              child: TextButton(
+                                onPressed: _openProjectDetails,
+                                style: TextButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  padding: EdgeInsets.zero,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
                                   ),
                                 ),
-                                child: TextButton(
-                                  onPressed: () =>
-                                      _launchURL(widget.project.githubUrl!),
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: Colors.white,
-                                    padding: EdgeInsets.zero,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                  ),
-                                  child: const Text(
-                                    'GitHub',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                child: const Text(
+                                  'Read More',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
                             ),
+                          ),
                         ],
                       ),
                     ],

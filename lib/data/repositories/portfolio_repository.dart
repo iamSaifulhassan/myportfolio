@@ -41,72 +41,151 @@ class PortfolioRepository {
         title: 'Flutter E-Commerce App',
         description:
             'A complete e-commerce mobile application with user authentication, product catalog, cart, and payment integration.',
-        technologies: ['Flutter', 'Dart', 'Firebase', 'Provider', 'Stripe'],
+        longDescription:
+            'Developed a full-stack e-commerce mobile application featuring secure user authentication, dynamic product catalog, shopping cart management, and integrated payment processing with Stripe. Implemented state management using Provider pattern and designed a scalable architecture following SOLID principles. The app includes real-time inventory updates, order tracking, and admin dashboard capabilities.',
+        technologies: [
+          'Flutter',
+          'Dart',
+          'Firebase',
+          'Provider',
+          'Stripe',
+          'REST API'
+        ],
+        features: [
+          'Secure user authentication with Firebase Auth',
+          'Real-time product catalog with search and filters',
+          'Shopping cart with persistent state',
+          'Stripe payment integration',
+          'Order history and tracking',
+          'Admin dashboard for inventory management',
+          'Push notifications for order updates',
+        ],
         category: 'Mobile App',
         isFeatured: true,
-        githubUrl: 'https://github.com/iamsaifulhassan/ecommerce-app',
-        liveUrl: 'https://flutter-ecommerce-demo.web.app',
         imageUrl: 'assets/images/projects/ecommerce.png',
+        screenshots: [],
+        youtubeVideoId:
+            'dQw4w9WgXcQ', // Placeholder - replace with your video ID
+        downloadUrl:
+            'https://drive.google.com/file/d/YOUR_FILE_ID/view', // Replace with actual link
       ),
       Project(
         title: 'Book Reading App',
         description:
-            'A mobile application for book lovers with reading features, bookmarks, and listening features and personalization settings.',
+            'A mobile application for book lovers with reading features, bookmarks, and listening features.',
+        longDescription:
+            'Engineered a comprehensive digital reading platform with advanced PDF rendering, bookmark management, and text-to-speech capabilities. Implemented local storage for offline reading and designed an intuitive UI/UX for seamless reading experience. The application uses efficient caching mechanisms to optimize performance and reduce memory footprint.',
         technologies: [
           'Flutter',
           'Dart',
           'Firebase',
           'PDF Viewer',
-          'Local Storage'
+          'Local Storage',
+          'SQLite'
+        ],
+        features: [
+          'Advanced PDF viewer with zoom and night mode',
+          'Bookmark and annotation system',
+          'Text-to-speech for audio reading',
+          'Offline reading with local storage',
+          'Reading progress synchronization',
+          'Customizable reading themes',
+          'Search within books',
         ],
         category: 'Mobile App',
         isFeatured: true,
-        githubUrl: 'https://github.com/iamsaifulhassan/bookreadapp',
-        liveUrl: 'https://bookreader-app.web.app',
         imageUrl: 'assets/images/projects/book.png',
+        screenshots: [],
+        youtubeVideoId: null, // No video for this project
+        downloadUrl: 'https://drive.google.com/file/d/YOUR_FILE_ID/view',
       ),
       Project(
         title: 'Portfolio Website',
         description:
-            'A responsive portfolio website built with Flutter Web showcasing projects and skills for freelance work.',
+            'A responsive portfolio website built with Flutter Web showcasing projects and skills.',
+        longDescription:
+            'Created a modern, responsive portfolio website using Flutter Web to demonstrate software engineering skills and projects. Implemented pixel-perfect responsive design that adapts seamlessly across desktop, tablet, and mobile devices. Features include smooth animations, contact form integration with EmailJS, and optimized build for deployment on GitHub Pages.',
         technologies: [
           'Flutter Web',
           'Dart',
           'Responsive Design',
-          'Animations'
+          'Animations',
+          'EmailJS',
+          'GitHub Actions'
+        ],
+        features: [
+          'Fully responsive design for all screen sizes',
+          'Smooth animations and transitions',
+          'Contact form with email integration',
+          'Project showcase with filtering',
+          'Skills visualization',
+          'Automated deployment with GitHub Actions',
+          'SEO optimized',
         ],
         category: 'Web App',
         isFeatured: true,
-        githubUrl:
-            'https://github.com/iamsaifulhassan/iamsaifulhassan_portfolio',
-        liveUrl: 'https://iamsaifulhassan.web.app',
         imageUrl: 'assets/images/projects/portfolio.png',
+        screenshots: [],
+        youtubeVideoId: null,
+        downloadUrl: null, // No download for web app
       ),
       Project(
         title: 'Task Management App',
         description:
             'A productivity app for managing daily tasks with categories, reminders, and progress tracking.',
+        longDescription:
+            'Built a feature-rich task management application using local database architecture for offline-first functionality. Implemented custom notification system for task reminders and designed an efficient data model using SQLite with optimized queries. Applied clean architecture principles to ensure maintainability and testability.',
         technologies: [
           'Flutter',
           'Dart',
           'SQLite',
           'Local Notifications',
-          'Provider'
+          'Provider',
+          'Clean Architecture'
+        ],
+        features: [
+          'Offline-first architecture with SQLite',
+          'Smart reminders with local notifications',
+          'Task categories and tags',
+          'Progress tracking and analytics',
+          'Recurring tasks support',
+          'Dark mode support',
+          'Data export functionality',
         ],
         category: 'Mobile App',
-        githubUrl: 'https://github.com/iamsaifulhassan/task-manager',
-        liveUrl: 'https://taskmanager-flutter.web.app',
         imageUrl: 'assets/images/projects/task.png',
+        screenshots: [],
+        youtubeVideoId: 'dQw4w9WgXcQ', // Placeholder
+        downloadUrl: 'https://drive.google.com/file/d/YOUR_FILE_ID/view',
       ),
       Project(
         title: 'Weather Forecast App',
         description:
-            'A beautiful weather application with location-based forecasts, weather maps, and detailed analytics.',
-        technologies: ['Flutter', 'Dart', 'REST API', 'Geolocation', 'Charts'],
+            'A weather application with location-based forecasts, weather maps, and detailed analytics.',
+        longDescription:
+            'Developed a weather forecasting application integrating with OpenWeatherMap API for real-time weather data. Implemented geolocation services for automatic location detection and designed interactive charts for weather analytics visualization. Focused on error handling, API rate limiting, and caching strategies for optimal performance.',
+        technologies: [
+          'Flutter',
+          'Dart',
+          'REST API',
+          'Geolocation',
+          'Charts',
+          'Provider'
+        ],
+        features: [
+          'Real-time weather data from OpenWeatherMap API',
+          'Automatic location detection',
+          '7-day weather forecast',
+          'Interactive charts and analytics',
+          'Multiple location support',
+          'Weather alerts and notifications',
+          'Beautiful weather animations',
+        ],
         category: 'Mobile App',
-        githubUrl: 'https://github.com/iamsaifulhassan/weather-app',
-        liveUrl: 'https://weather-forecast-flutter.web.app',
         imageUrl: 'assets/images/projects/weather.png',
+        screenshots: [],
+        youtubeVideoId: null,
+        downloadUrl: 'https://drive.google.com/file/d/YOUR_FILE_ID/view',
       ),
     ];
   }

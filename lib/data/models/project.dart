@@ -1,21 +1,27 @@
 class Project {
   final String title;
   final String description;
+  final String longDescription;
   final List<String> technologies;
+  final List<String> features;
   final String? imageUrl;
-  final String? githubUrl;
-  final String? liveUrl;
+  final List<String> screenshots;
+  final String? youtubeVideoId;
+  final String? downloadUrl;
   final String category;
   final bool isFeatured;
 
   Project({
     required this.title,
     required this.description,
-    required this.technologies,
     required this.category,
+    this.longDescription = '',
     this.imageUrl,
-    this.githubUrl,
-    this.liveUrl,
+    this.technologies = const [],
+    this.features = const [],
+    this.screenshots = const [],
+    this.youtubeVideoId,
+    this.downloadUrl,
     this.isFeatured = false,
   });
 
@@ -23,11 +29,19 @@ class Project {
     return Project(
       title: json['title'],
       description: json['description'],
-      technologies: List<String>.from(json['technologies']),
+      longDescription: json['longDescription'] ?? json['description'],
+      technologies: json['technologies'] != null
+          ? List<String>.from(json['technologies'])
+          : [],
+      features:
+          json['features'] != null ? List<String>.from(json['features']) : [],
+      screenshots: json['screenshots'] != null
+          ? List<String>.from(json['screenshots'])
+          : [],
       category: json['category'],
       imageUrl: json['imageUrl'],
-      githubUrl: json['githubUrl'],
-      liveUrl: json['liveUrl'],
+      youtubeVideoId: json['youtubeVideoId'],
+      downloadUrl: json['downloadUrl'],
       isFeatured: json['isFeatured'] ?? false,
     );
   }
@@ -36,11 +50,14 @@ class Project {
     return {
       'title': title,
       'description': description,
+      'longDescription': longDescription,
       'technologies': technologies,
+      'features': features,
+      'screenshots': screenshots,
       'category': category,
       'imageUrl': imageUrl,
-      'githubUrl': githubUrl,
-      'liveUrl': liveUrl,
+      'youtubeVideoId': youtubeVideoId,
+      'downloadUrl': downloadUrl,
       'isFeatured': isFeatured,
     };
   }

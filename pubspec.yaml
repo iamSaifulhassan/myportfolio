@@ -18,6 +18,8 @@ dependencies:
   email_launcher: ^1.1.1
   flutter_dotenv: ^6.0.0
   http: ^1.2.2
+  youtube_player_flutter: ^8.1.2
+
 
 dev_dependencies:
   flutter_test:
