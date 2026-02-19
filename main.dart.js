@@ -85831,12 +85831,12 @@ $1(a){var s=null,r=A.bE(12),q=A.fx(A.ab(51,B.k.gl(0)>>>16&255,B.k.gl(0)>>>8&255,
 return A.aV(s,A.ap(a,s,s,s,A.aZ().$3$color$fontSize$height(B.y,16,1.6).d3(B.y,12),s,s),B.m,s,s,new A.b5(B.bG,s,q,r,s,s,B.B),s,s,s,B.js,s,s,s)},
 $S:78}
 A.KZ.prototype={
-J(a){var s,r=null,q="Comsats University Islamabad",p=t.s,o=A.b([new A.yJ(q,"Java Developer","2023 - Present","Built scalable backend systems using Java and MySQL. Focused on Academic projects and internships to enhance skills in software development.",A.b(["Developed RESTful APIs for mobile applications","Optimized database queries for performance","Error handling and logging improvements"],p)),new A.yJ(q,"Flutter Full Stack Developer","2024 - Present","Developed cross-platform mobile applications using Flutter to learn and gain experience. Focused on performance optimization with unique features and user experience.",A.b(["Built 5+ production-ready apps","Implemented custom Designs and animations","Integrated RESTful APIs and Firebase","Optimized app performance and responsiveness","Learned state management with Provider and Riverpod"],p))],t.Ua),n=A.b8(a,r,t.w).w.a.a,m=n>1024,l=n>600&&n<=1024
-if(m)s=120
-else s=l?80:30
-p=A.b([A.hg(A.ap("Experience",r,r,r,A.aZ().$3$color$fontSize$fontWeight(B.e,24,B.ak).er(32),B.aF,r),B.w,B.T),B.cb],t.p)
-B.b.N(p,A.aBY(2,new A.a55(o,m),!0,t.l7))
-return A.aV(r,A.bz(p,B.x,r,B.p,B.o),B.m,r,r,r,r,r,r,new A.a9(s,0,s,0),r,r,r)}}
+J(a){var s,r=null,q=t.s,p=A.b([new A.yJ("CodeAlpha","Mobile Application Developer Intern","Jul 2025 \u2013 Aug 2025","Virtual internship at CodeAlpha (Lucknow, India \u2014 Remote) focused on mobile application development, UI development, and REST API integration under defined technical constraints.",A.b(["Completed structured application-building tasks focused on UI development and REST API integration","Developed 4 modular applications under defined technical constraints and submission deadlines","Strengthened understanding of client-server communication patterns and maintainable mobile architecture"],q)),new A.yJ("Swedish College of Engineering and Technology","Data Entry Operator","Nov 2020 \u2013 Feb 2021","Worked in the Examination Branch at Swedish College, Wah Cantt, ensuring the integrity and confidentiality of student academic records.",A.b(["Ensured integrity and confidentiality of student academic records in the Examination Branch","Validated physical data against digital entries to minimize errors in the institutional database","Maintained accurate and organized records to support administrative operations"],q))],t.Ua),o=A.b8(a,r,t.w).w.a.a,n=o>1024,m=o>600&&o<=1024
+if(n)s=120
+else s=m?80:30
+q=A.b([A.hg(A.ap("Experience",r,r,r,A.aZ().$3$color$fontSize$fontWeight(B.e,24,B.ak).er(32),B.aF,r),B.w,B.T),B.cb],t.p)
+B.b.N(q,A.aBY(2,new A.a55(p,n),!0,t.l7))
+return A.aV(r,A.bz(q,B.x,r,B.p,B.o),B.m,r,r,r,r,r,r,new A.a9(s,0,s,0),r,r,r)}}
 A.a55.prototype={
 $1(a){var s,r,q,p,o=null,n=this.a[a],m=A.d2(0,100*a),l=A.cR(o,o,this.b?40:20),k=t.p,j=A.b([A.aV(o,o,B.m,o,o,new A.b5(B.k,o,A.fx(B.e,3),o,o,o,B.bV),o,14,o,o,o,o,14)],k)
 if(a!==1)j.push(A.d3(A.aV(o,o,B.m,A.ab(B.c.ai(76.5),B.k.gl(0)>>>16&255,B.k.gl(0)>>>8&255,B.k.gl(0)&255),o,o,o,o,o,o,o,o,4),1))
