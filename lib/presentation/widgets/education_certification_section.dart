@@ -64,12 +64,18 @@ class EducationCertificationSection extends StatelessWidget {
   }
 
   Widget _buildDesktopLayout(double subHeadingFontSize) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
       children: [
-        Expanded(child: _buildEducationSection(subHeadingFontSize)),
-        const SizedBox(width: 50),
-        Expanded(child: _buildCertificationSection(subHeadingFontSize)),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(child: _buildEducationSection(subHeadingFontSize)),
+            const SizedBox(width: 50),
+            Expanded(child: _buildCertificationSection(subHeadingFontSize)),
+          ],
+        ),
+        const SizedBox(height: 60),
+        _buildSimulatedJobsSection(subHeadingFontSize),
       ],
     );
   }
@@ -80,6 +86,8 @@ class EducationCertificationSection extends StatelessWidget {
         _buildEducationSection(subHeadingFontSize),
         const SizedBox(height: 30),
         _buildCertificationSection(subHeadingFontSize),
+        const SizedBox(height: 40),
+        _buildSimulatedJobsSection(subHeadingFontSize),
       ],
     );
   }
@@ -204,14 +212,27 @@ class EducationCertificationSection extends StatelessWidget {
         'title': 'Amazon Cloud Practitioner (AWS)',
         'issuer': 'Amazon Web Services',
         'date': 'August 2025',
-        'credentialId': 'AWS-CP-123456',
-        'url': 'https://www.aws.training/Certification',
+        'credentialId': '',
+        'url': 'https://drive.google.com/file/d/YOUR_AWS_CERT_ID/view',
         'skills': [
           'AWS Cloud',
           'Cloud Computing',
           'Security',
           'Billing & Pricing',
           'Cloud Architecture'
+        ],
+      },
+      {
+        'title': 'Software Engineering Intern',
+        'issuer': 'HackerRank',
+        'date': '2025',
+        'credentialId': '',
+        'url': 'https://drive.google.com/file/d/YOUR_HACKERRANK_CERT_ID/view',
+        'skills': [
+          'Problem Solving',
+          'Data Structures',
+          'Algorithms',
+          'Software Engineering',
         ],
       },
     ];
@@ -241,6 +262,202 @@ class EducationCertificationSection extends StatelessWidget {
                       CertificationCard(certification: certification))
                   .toList(),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSimulatedJobsSection(double subHeadingFontSize) {
+    final jobs = [
+      {
+        'role': 'Software Engineering Job Simulation',
+        'company': 'JP Morgan Chase & Co.',
+        'period': '2025',
+        'type': 'Job Simulation',
+        'description':
+            'Completed a virtual internship simulation focused on software engineering practices at JP Morgan Chase. Worked on real-world inspired tasks including interface setup, data feeds, and data visualization using industry tools.',
+        'skills': [
+          'Python',
+          'Data Visualization',
+          'Financial Data',
+          'Interface Development',
+          'Perspective Library',
+        ],
+      },
+      {
+        'role': 'Software Engineering Job Simulation',
+        'company': 'Electronic Arts (EA Sports)',
+        'period': '2025',
+        'type': 'Job Simulation',
+        'description':
+            'Participated in EA Sports\' virtual software engineering simulation. Worked on game feature proposals, object-oriented design for game components, and bug reporting — gaining hands-on exposure to game development workflows.',
+        'skills': [
+          'Object-Oriented Design',
+          'C++',
+          'Game Development',
+          'Feature Design',
+          'Bug Reporting',
+        ],
+      },
+    ];
+
+    return FadeInUp(
+      duration: const Duration(milliseconds: 800),
+      delay: const Duration(milliseconds: 200),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Simulated Job Experiences',
+            style: AppTheme.subHeadingStyle.copyWith(
+              fontSize: subHeadingFontSize,
+              color: AppTheme.primaryColor,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Virtual job simulations from leading global companies via Forage',
+            style: AppTheme.bodyStyle.copyWith(
+              fontSize: 14,
+              color: AppTheme.textSecondary,
+            ),
+          ),
+          const SizedBox(height: 30),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final isWide = constraints.maxWidth > 700;
+              if (isWide) {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: jobs
+                      .map((job) => Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: _buildJobCard(job),
+                            ),
+                          ))
+                      .toList(),
+                );
+              }
+              return Column(
+                children: jobs
+                    .map((job) => Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: _buildJobCard(job),
+                        ))
+                    .toList(),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildJobCard(Map<String, dynamic> job) {
+    return Container(
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: AppTheme.backgroundColor,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: AppTheme.primaryColor.withOpacity(0.2),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: AppTheme.primaryColor.withOpacity(0.05),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Header row
+          Row(
+            children: [
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  color: AppTheme.primaryColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: AppTheme.primaryColor.withOpacity(0.3),
+                  ),
+                ),
+                child: Text(
+                  job['type'] as String,
+                  style: AppTheme.bodyStyle.copyWith(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: AppTheme.primaryColor,
+                  ),
+                ),
+              ),
+              const Spacer(),
+              Text(
+                job['period'] as String,
+                style: AppTheme.bodyStyle.copyWith(
+                  fontSize: 13,
+                  color: AppTheme.textSecondary,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          Text(
+            job['role'] as String,
+            style: AppTheme.bodyStyle.copyWith(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: AppTheme.textPrimary,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            job['company'] as String,
+            style: AppTheme.bodyStyle.copyWith(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: AppTheme.primaryColor,
+            ),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            job['description'] as String,
+            style: AppTheme.bodyStyle.copyWith(
+              fontSize: 13,
+              height: 1.6,
+              color: AppTheme.textSecondary,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: (job['skills'] as List<String>)
+                .map((skill) => Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: AppTheme.surfaceColor,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: AppTheme.primaryColor.withOpacity(0.2),
+                        ),
+                      ),
+                      child: Text(
+                        skill,
+                        style: AppTheme.bodyStyle.copyWith(
+                          fontSize: 12,
+                          color: AppTheme.textSecondary,
+                        ),
+                      ),
+                    ))
+                .toList(),
           ),
         ],
       ),
