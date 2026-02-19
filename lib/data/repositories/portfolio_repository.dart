@@ -366,29 +366,27 @@ class PortfolioRepository {
   static List<Experience> getExperience() {
     return [
       Experience(
-        company: 'Comsats University Islamabad',
-        position: 'Java Developer',
-        duration: '2023 - Present',
+        company: 'CodeAlpha',
+        position: 'Mobile Application Developer Intern',
+        duration: 'Jul 2025 – Aug 2025',
         description:
-            'Built scalable backend systems using Java and MySQL. Focused on Academic projects and internships to enhance skills in software development.',
+            'Virtual internship at CodeAlpha (Lucknow, India — Remote) focused on mobile application development, UI development, and REST API integration under defined technical constraints.',
         achievements: [
-          'Developed RESTful APIs for mobile applications',
-          'Optimized database queries for performance',
-          'Error handling and logging improvements',
+          'Completed structured application-building tasks focused on UI development and REST API integration',
+          'Developed 4 modular applications under defined technical constraints and submission deadlines',
+          'Strengthened understanding of client-server communication patterns and maintainable mobile architecture',
         ],
       ),
       Experience(
-        company: 'Comsats University Islamabad',
-        position: 'Flutter Full Stack Developer',
-        duration: '2024 - Present',
+        company: 'Swedish College of Engineering and Technology',
+        position: 'Data Entry Operator',
+        duration: 'Nov 2020 – Feb 2021',
         description:
-            'Developed cross-platform mobile applications using Flutter to learn and gain experience. Focused on performance optimization with unique features and user experience.',
+            'Worked in the Examination Branch at Swedish College, Wah Cantt, ensuring the integrity and confidentiality of student academic records.',
         achievements: [
-          'Built 5+ production-ready apps',
-          'Implemented custom Designs and animations',
-          'Integrated RESTful APIs and Firebase',
-          'Optimized app performance and responsiveness',
-          'Learned state management with Provider and Riverpod',
+          'Ensured integrity and confidentiality of student academic records in the Examination Branch',
+          'Validated physical data against digital entries to minimize errors in the institutional database',
+          'Maintained accurate and organized records to support administrative operations',
         ],
       ),
     ];
