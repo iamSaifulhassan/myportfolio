@@ -33,7 +33,7 @@ class PortfolioRepository {
         'name': 'Hackerrank',
         'icon': 'FontAwesomeIcons.hackerrank',
         'certificateUrl':
-            'https://drive.google.com/file/d/YOUR_HACKERRANK_CERT_ID/view',
+            'https://www.hackerrank.com/certificates/5d22001c29b2',
       },
       {
         'name': 'JP Morgan',
