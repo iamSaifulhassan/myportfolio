@@ -64,19 +64,27 @@ class CertificationCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          Text(
-            'ID: ${certification['credentialId']}',
-            style: AppTheme.bodyStyle.copyWith(
-              fontSize: 12,
-              fontFamily: 'monospace',
-              color: AppTheme.textHint,
+          if (certification['credentialId'] != null &&
+              certification['credentialId'].toString().isNotEmpty)
+            Text(
+              'ID: ${certification['credentialId']}',
+              style: AppTheme.bodyStyle.copyWith(
+                fontSize: 12,
+                fontFamily: 'monospace',
+                color: AppTheme.textHint,
+              ),
             ),
-          ),
-          const SizedBox(height: 12),
+          if (certification['credentialId'] != null &&
+              certification['credentialId'].toString().isNotEmpty)
+            const SizedBox(height: 12),
+          if (certification['credentialId'] == null ||
+              certification['credentialId'].toString().isEmpty)
+            const SizedBox(height: 8),
           Wrap(
             spacing: 8,
             runSpacing: 4,
-            children: (certification['skills'] as List<String>).map<Widget>((skill) {
+            children:
+                (certification['skills'] as List<String>).map<Widget>((skill) {
               return Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 8,

@@ -86,34 +86,55 @@ class PortfolioRepository {
             'https://drive.google.com/file/d/YOUR_FILE_ID/view', // Replace with actual link
       ),
       Project(
-        title: 'Book Reading App',
+        title: 'BookRead - PDF Reading App',
         description:
-            'A mobile application for book lovers with reading features, bookmarks, and listening features.',
+            'A beautifully designed cross-platform PDF reading app with library management, reading progress tracking, TTS, and Firebase cloud sync.',
         longDescription:
-            'Engineered a comprehensive digital reading platform with advanced PDF rendering, bookmark management, and text-to-speech capabilities. Implemented local storage for offline reading and designed an intuitive UI/UX for seamless reading experience. The application uses efficient caching mechanisms to optimize performance and reduce memory footprint.',
+            'BookRead is a comprehensive PDF reading platform built with Flutter and Firebase. It features a full digital library system with categorized collections (Downloads, Favorites, To-Read, Completed), advanced Syncfusion PDF viewer with smooth rendering, and Text-to-Speech for audio reading. The app follows BLoC architecture for clean, scalable state management across 12 screens.\n\n'
+            '🏗️ Architecture\n'
+            'Follows clean BLoC (Business Logic Component) pattern with clear separation of auth, blocs, models, repositories, screens, services, themes, and widgets.\n\n'
+            '🔐 Authentication\n'
+            'Firebase Auth with email/password and Google Sign-In. Secure session management, password reset, and real-time profile sync across devices with Firebase Storage for profile images.\n\n'
+            '📚 Library Management\n'
+            'Sophisticated organization with four categories: Downloads (PDF upload from device), Favorites (quick access), To-Read (reading queue with priority), and Completed (statistics & achievement badges).\n\n'
+            '📖 Reading Experience\n'
+            'Syncfusion PDF Viewer with pinch zoom, page thumbnails, bookmarks, and table of contents. Automatic reading progress save and daily streak tracking. Full TTS support with speed controls.\n\n'
+            '☁️ Offline & Sync\n'
+            'Offline-first architecture with local storage via SharedPreferences. Firebase Firestore for real-time multi-device sync and conflict resolution on reconnect.\n\n'
+            '🔗 Source Code: github.com/iamSaifulhassan/bookreadapp',
         technologies: [
           'Flutter',
           'Dart',
-          'Firebase',
-          'PDF Viewer',
-          'Local Storage',
-          'SQLite'
+          'Firebase Auth',
+          'Cloud Firestore',
+          'Firebase Storage',
+          'BLoC',
+          'Syncfusion PDF',
+          'Flutter TTS',
+          'Google Sign-In',
+          'SharedPreferences',
+          'Material Design 3',
         ],
         features: [
-          'Advanced PDF viewer with zoom and night mode',
-          'Bookmark and annotation system',
-          'Text-to-speech for audio reading',
-          'Offline reading with local storage',
-          'Reading progress synchronization',
-          'Customizable reading themes',
-          'Search within books',
+          'Firebase email/password & Google Sign-In authentication',
+          'Categorized library: Downloads, Favorites, To-Read, Completed',
+          'Syncfusion high-performance PDF rendering with zoom & bookmarks',
+          'Text-to-Speech with playback speed controls and voice selection',
+          'Automatic reading progress save and resume functionality',
+          'Daily reading streak tracking with achievement badges',
+          'Multi-device cloud sync via Firebase Firestore',
+          'Offline-first architecture with local caching',
+          'Customizable themes: light/dark mode and reading settings',
+          'Book sharing via share_plus (email, social, messaging)',
+          'User profile with picture upload to Firebase Storage',
+          'Cross-platform: Android, iOS, Web, Windows, macOS, Linux',
         ],
         category: 'Mobile App',
         isFeatured: true,
         imageUrl: 'assets/images/projects/book.png',
         screenshots: [],
-        youtubeVideoId: null, // No video for this project
-        downloadUrl: 'https://drive.google.com/file/d/YOUR_FILE_ID/view',
+        youtubeVideoId: null,
+        downloadUrl: 'https://github.com/iamSaifulhassan/bookreadapp',
       ),
       Project(
         title: 'Portfolio Website',

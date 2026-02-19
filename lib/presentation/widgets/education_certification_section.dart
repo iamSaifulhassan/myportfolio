@@ -157,28 +157,30 @@ class EducationCertificationSection extends StatelessWidget {
   }
 
   Widget _buildCertificationSection(double subHeadingFontSize) {
-    // Keeping certifications hardcoded here as they are not in repository yet, 
-    // or we can move them to repository if preferred. 
+    // Keeping certifications hardcoded here as they are not in repository yet,
+    // or we can move them to repository if preferred.
     // For now, using the list from the original file but cleaner.
     final certifications = [
       {
-        'title': 'IBM Certified Flutter Developer',
-        'issuer': 'IBM',
-        'date': 'June 2024- Present',
-        'credentialId': 'Ongoing',
-        'url': 'https://developers.google.com/certification/flutter',
+        'title': 'Flutter Rest Api',
+        'issuer': 'Mindluster.com',
+        'date': 'August 2025',
+        'credentialId': '',
+        'url':
+            'https://drive.google.com/file/d/192CiFFlMqbHl9V1ykm9Ls0yLbZQ-Rabk/view',
         'skills': [
           'Flutter',
           'Dart',
           'Mobile Development',
           'State Management',
-          'Firebase'
+          'Firebase',
+          'Api'
         ],
       },
       {
         'title': 'Database for Developers: Foundations',
         'issuer': 'Oracle Corporation',
-        'date': 'May 2023',
+        'date': 'April 2025',
         'credentialId': '571065',
         'url':
             'https://drive.google.com/file/d/1k0JdU-Xo6rSvsQa40AJpoKipWV_VwVil/view?usp=drive_link',
@@ -187,7 +189,7 @@ class EducationCertificationSection extends StatelessWidget {
       {
         'title': 'Database for Developers: Next Level',
         'issuer': 'Oracle Corporation',
-        'date': 'June 2024 - Present',
+        'date': 'Feb 2025',
         'credentialId': '571065',
         'url':
             'https://drive.google.com/file/d/17o3JekT2jZrT7F_ggY3j_3pnkgJn06kK/view?usp=drive_link',
@@ -235,7 +237,8 @@ class EducationCertificationSection extends StatelessWidget {
             child: Column(
               key: ValueKey(certifications.length),
               children: certifications
-                  .map((certification) => CertificationCard(certification: certification))
+                  .map((certification) =>
+                      CertificationCard(certification: certification))
                   .toList(),
             ),
           ),
