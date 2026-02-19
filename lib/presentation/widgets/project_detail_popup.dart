@@ -442,6 +442,7 @@ class _ProjectDetailPopupState extends State<ProjectDetailPopup> {
   }
 
   Widget _buildDownloadButton() {
+    final isGitHub = widget.project.downloadUrl!.contains('github.com');
     return Container(
       width: double.infinity,
       height: 56,
@@ -465,14 +466,14 @@ class _ProjectDetailPopupState extends State<ProjectDetailPopup> {
             borderRadius: BorderRadius.circular(16),
           ),
         ),
-        icon: const Icon(
-          Icons.download,
+        icon: Icon(
+          isGitHub ? Icons.code : Icons.download,
           color: Colors.white,
           size: 24,
         ),
-        label: const Text(
-          'Download App',
-          style: TextStyle(
+        label: Text(
+          isGitHub ? 'View on GitHub' : 'Download App',
+          style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
             color: Colors.white,

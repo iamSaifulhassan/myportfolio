@@ -53,55 +53,23 @@ class PortfolioRepository {
   // Sample Projects Data
   static List<Project> getProjects() {
     return [
-      Project(
-        title: 'Flutter E-Commerce App',
-        description:
-            'A complete e-commerce mobile application with user authentication, product catalog, cart, and payment integration.',
-        longDescription:
-            'Developed a full-stack e-commerce mobile application featuring secure user authentication, dynamic product catalog, shopping cart management, and integrated payment processing with Stripe. Implemented state management using Provider pattern and designed a scalable architecture following SOLID principles. The app includes real-time inventory updates, order tracking, and admin dashboard capabilities.',
-        technologies: [
-          'Flutter',
-          'Dart',
-          'Firebase',
-          'Provider',
-          'Stripe',
-          'REST API'
-        ],
-        features: [
-          'Secure user authentication with Firebase Auth',
-          'Real-time product catalog with search and filters',
-          'Shopping cart with persistent state',
-          'Stripe payment integration',
-          'Order history and tracking',
-          'Admin dashboard for inventory management',
-          'Push notifications for order updates',
-        ],
-        category: 'Mobile App',
-        isFeatured: true,
-        imageUrl: 'assets/images/projects/ecommerce.png',
-        screenshots: [],
-        youtubeVideoId:
-            'dQw4w9WgXcQ', // Placeholder - replace with your video ID
-        downloadUrl:
-            'https://drive.google.com/file/d/YOUR_FILE_ID/view', // Replace with actual link
-      ),
+      // ── 1. BookRead ──────────────────────────────────────────────────────
       Project(
         title: 'BookRead - PDF Reading App',
         description:
-            'A beautifully designed cross-platform PDF reading app with library management, reading progress tracking, TTS, and Firebase cloud sync.',
+            'Cross-platform PDF reading app with digital library management, reading progress tracking, TTS, and Firebase cloud sync.',
         longDescription:
-            'BookRead is a comprehensive PDF reading platform built with Flutter and Firebase. It features a full digital library system with categorized collections (Downloads, Favorites, To-Read, Completed), advanced Syncfusion PDF viewer with smooth rendering, and Text-to-Speech for audio reading. The app follows BLoC architecture for clean, scalable state management across 12 screens.\n\n'
-            '🏗️ Architecture\n'
-            'Follows clean BLoC (Business Logic Component) pattern with clear separation of auth, blocs, models, repositories, screens, services, themes, and widgets.\n\n'
-            '🔐 Authentication\n'
-            'Firebase Auth with email/password and Google Sign-In. Secure session management, password reset, and real-time profile sync across devices with Firebase Storage for profile images.\n\n'
-            '📚 Library Management\n'
-            'Sophisticated organization with four categories: Downloads (PDF upload from device), Favorites (quick access), To-Read (reading queue with priority), and Completed (statistics & achievement badges).\n\n'
-            '📖 Reading Experience\n'
-            'Syncfusion PDF Viewer with pinch zoom, page thumbnails, bookmarks, and table of contents. Automatic reading progress save and daily streak tracking. Full TTS support with speed controls.\n\n'
-            '☁️ Offline & Sync\n'
-            'Offline-first architecture with local storage via SharedPreferences. Firebase Firestore for real-time multi-device sync and conflict resolution on reconnect.\n\n'
-            '🔗 Source Code: github.com/iamSaifulhassan/bookreadapp',
+            'BookRead is a feature-rich PDF reading platform built with Flutter & Firebase, following BLoC architecture across 12 screens.\n\n'
+            'Authentication\n'
+            'Firebase Auth with email/password and Google Sign-In, secure session management, and real-time profile sync with Firebase Storage.\n\n'
+            'Library Management\n'
+            'Four categorized collections — Downloads, Favorites, To-Read, and Completed — with reading statistics and achievement badges.\n\n'
+            'Reading Experience\n'
+            'Syncfusion PDF Viewer with pinch zoom, bookmarks, and page thumbnails. Auto-saves progress and supports daily streak tracking.\n\n'
+            'Text-to-Speech\n'
+            'Full TTS support with play/pause, speed controls, and voice selection. Background audio support.\n\n'
+            'Offline & Sync\n'
+            'Offline-first with local storage (SharedPreferences). Firebase Firestore for real-time multi-device sync.',
         technologies: [
           'Flutter',
           'Dart',
@@ -116,17 +84,15 @@ class PortfolioRepository {
           'Material Design 3',
         ],
         features: [
-          'Firebase email/password & Google Sign-In authentication',
-          'Categorized library: Downloads, Favorites, To-Read, Completed',
-          'Syncfusion high-performance PDF rendering with zoom & bookmarks',
-          'Text-to-Speech with playback speed controls and voice selection',
-          'Automatic reading progress save and resume functionality',
-          'Daily reading streak tracking with achievement badges',
-          'Multi-device cloud sync via Firebase Firestore',
-          'Offline-first architecture with local caching',
-          'Customizable themes: light/dark mode and reading settings',
-          'Book sharing via share_plus (email, social, messaging)',
-          'User profile with picture upload to Firebase Storage',
+          'Email/password & Google Sign-In via Firebase Auth',
+          'Library categories: Downloads, Favorites, To-Read, Completed',
+          'High-performance Syncfusion PDF viewer with zoom & bookmarks',
+          'Text-to-Speech with speed controls and voice selection',
+          'Auto-save reading position with resume support',
+          'Daily reading streak tracking & achievement badges',
+          'Offline-first with real-time Firestore multi-device sync',
+          'Light/dark mode and customizable reading settings',
+          'Book sharing via email, social media & messaging',
           'Cross-platform: Android, iOS, Web, Windows, macOS, Linux',
         ],
         category: 'Mobile App',
@@ -136,93 +102,149 @@ class PortfolioRepository {
         youtubeVideoId: null,
         downloadUrl: 'https://github.com/iamSaifulhassan/bookreadapp',
       ),
+
+      // ── 2. University Portal ──────────────────────────────────────────────
       Project(
-        title: 'Portfolio Website',
+        title: 'University Portal',
         description:
-            'A responsive portfolio website built with Flutter Web showcasing projects and skills.',
+            'Java desktop application with dual Teacher/Student portals for course management, marks entry, enrollment, and academic report generation.',
         longDescription:
-            'Created a modern, responsive portfolio website using Flutter Web to demonstrate software engineering skills and projects. Implemented pixel-perfect responsive design that adapts seamlessly across desktop, tablet, and mobile devices. Features include smooth animations, contact form integration with EmailJS, and optimized build for deployment on GitHub Pages.',
+            'A desktop academic management system built with Java Swing/AWT and SQL, providing role-based access for teachers and students.\n\n'
+            'Teacher Portal\n'
+            'Full course CRUD — register, update, and delete courses. Enter and update student marks across assessment types (assignments, quizzes, midterms, finals).\n\n'
+            'Student Portal\n'
+            'View enrolled courses, real-time grades, semester-wise performance, and GPA. Auto-calculated from teacher-entered marks.\n\n'
+            'Reports & Analytics\n'
+            'Student performance reports, course-wide grade distributions, transcript generation, and complete academic records.\n\n'
+            'Security\n'
+            'Role-based access control (RBAC), password protection, SQL injection prevention via prepared statements, and session management.',
         technologies: [
-          'Flutter Web',
-          'Dart',
-          'Responsive Design',
-          'Animations',
-          'EmailJS',
-          'GitHub Actions'
+          'Java',
+          'Java Swing/AWT',
+          'SQL',
+          'MySQL/SQLite',
+          'JDBC',
+          'OOP',
+          'RBAC',
         ],
         features: [
-          'Fully responsive design for all screen sizes',
-          'Smooth animations and transitions',
-          'Contact form with email integration',
-          'Project showcase with filtering',
-          'Skills visualization',
-          'Automated deployment with GitHub Actions',
-          'SEO optimized',
+          'Dual role system: Teacher and Student portals',
+          'Secure login with role-based access control (RBAC)',
+          'Course CRUD: register, update, delete, and assign courses',
+          'Student enrollment management per course',
+          'Marks entry across multiple assessment categories',
+          'Auto GPA calculation from entered grades',
+          'Academic reports: transcripts and grade distributions',
+          'SQL injection prevention with prepared statements',
+          'JDBC-based data layer with transaction support',
+          'Cross-platform: Windows, macOS, Linux (Java)',
         ],
-        category: 'Web App',
-        isFeatured: true,
-        imageUrl: 'assets/images/projects/portfolio.png',
+        category: 'Desktop App',
+        isFeatured: false,
+        imageUrl: 'assets/images/projects/ecommerce.png',
         screenshots: [],
         youtubeVideoId: null,
-        downloadUrl: null, // No download for web app
+        downloadUrl:
+            'https://github.com/iamSaifulhassan/University_portal-main',
       ),
+
+      // ── 3. E-Commerce App ────────────────────────────────────────────────
       Project(
-        title: 'Task Management App',
+        title: 'E-Commerce Application',
         description:
-            'A productivity app for managing daily tasks with categories, reminders, and progress tracking.',
+            'Full-featured Flutter e-commerce app with Supabase backend, Clean Architecture, BLoC state management, and Cloudinary image hosting.',
         longDescription:
-            'Built a feature-rich task management application using local database architecture for offline-first functionality. Implemented custom notification system for task reminders and designed an efficient data model using SQLite with optimized queries. Applied clean architecture principles to ensure maintainability and testability.',
+            'A production-ready e-commerce app built using Flutter with Clean Architecture principles, separating Domain, Data, and Presentation layers.\n\n'
+            'Authentication & Profiles\n'
+            'Supabase Auth with email/password login, secure RLS policies, automatic profile creation via database triggers, and avatar support.\n\n'
+            'Product Catalog\n'
+            'Category-based product browsing with search, filtering, and Cloudinary-hosted images. Full stock and price management.\n\n'
+            'Shopping Cart\n'
+            'Persistent per-user cart with real-time total calculation. Unique constraint prevents duplicate items. Quantity updates & removal.\n\n'
+            'Architecture\n'
+            'Clean Architecture with BLoC, GetIt for dependency injection, Freezed for immutable models, and Either pattern for error handling.\n\n'
+            'Security\n'
+            'Row-Level Security (RLS) on all tables, environment variables via flutter_dotenv, and JDBC prepared statements.',
         technologies: [
           'Flutter',
           'Dart',
-          'SQLite',
-          'Local Notifications',
-          'Provider',
-          'Clean Architecture'
+          'Supabase',
+          'PostgreSQL',
+          'BLoC',
+          'Clean Architecture',
+          'GetIt',
+          'Freezed',
+          'Cloudinary',
+          'go_router',
+          'dartz',
+          'flutter_dotenv',
         ],
         features: [
-          'Offline-first architecture with SQLite',
-          'Smart reminders with local notifications',
-          'Task categories and tags',
-          'Progress tracking and analytics',
-          'Recurring tasks support',
-          'Dark mode support',
-          'Data export functionality',
+          'Supabase Auth with email/password and RLS data protection',
+          'Automatic profile creation via PostgreSQL database triggers',
+          'Category-based product browsing with search & filters',
+          'Cloudinary image hosting with cached_network_image',
+          'Persistent shopping cart with real-time total calculation',
+          'Clean Architecture: Domain, Data & Presentation layers',
+          'BLoC state management with Freezed immutable models',
+          'GetIt dependency injection & Either error handling',
+          'Declarative routing with go_router',
+          'Cross-platform: Android, iOS, Web, Linux, macOS, Windows',
         ],
         category: 'Mobile App',
+        isFeatured: true,
+        imageUrl: 'assets/images/projects/ecommerce.png',
+        screenshots: [],
+        youtubeVideoId: null,
+        downloadUrl: 'https://github.com/iamSaifulhassan/ecommerceapp',
+      ),
+
+      // ── 4. Smart Task Manager ─────────────────────────────────────────────
+      Project(
+        title: 'Smart Task Manager',
+        description:
+            'Flutter task management app with offline-first SQLite storage, Firebase cloud sync, Riverpod state management, and smart filtering.',
+        longDescription:
+            'A Clean Architecture Flutter app for comprehensive task management that works fully offline and syncs to Firebase when connected.\n\n'
+            'Task Management\n'
+            'Full CRUD — create tasks with title, description, priority, and deadline. Track status (Pending/Completed) with timestamps.\n\n'
+            'Offline-First Sync\n'
+            'SQLite for local persistence. Smart sync engine detects connectivity and automatically syncs to Cloud Firestore, with conflict resolution.\n\n'
+            'Smart Filtering\n'
+            'Filter by Priority (High/Medium/Low), Status, or Deadline (Overdue/Today/Upcoming). Sort by date, deadline, priority, or title.\n\n'
+            'Architecture\n'
+            'Clean Architecture with Domain, Data, and Presentation layers. Riverpod for state management, GetIt for DI, and Either pattern for errors.',
+        technologies: [
+          'Flutter',
+          'Dart',
+          'Firebase Auth',
+          'Cloud Firestore',
+          'SQLite (sqflite)',
+          'Riverpod',
+          'Clean Architecture',
+          'GetIt',
+          'dartz',
+          'connectivity_plus',
+          'Dio',
+        ],
+        features: [
+          'Firebase email/password authentication',
+          'Full task CRUD with title, description, priority & deadline',
+          'Offline-first with SQLite local database',
+          'Auto-sync to Cloud Firestore with conflict resolution',
+          'Filter by priority, status, and deadline',
+          'Sort by date, deadline, priority, or title',
+          'Riverpod state management with StateNotifier',
+          'Clean Architecture: Domain, Data & Presentation layers',
+          'Either pattern for functional error handling',
+          'Cross-platform: Android, iOS, Web',
+        ],
+        category: 'Mobile App',
+        isFeatured: true,
         imageUrl: 'assets/images/projects/task.png',
         screenshots: [],
-        youtubeVideoId: 'dQw4w9WgXcQ', // Placeholder
-        downloadUrl: 'https://drive.google.com/file/d/YOUR_FILE_ID/view',
-      ),
-      Project(
-        title: 'Weather Forecast App',
-        description:
-            'A weather application with location-based forecasts, weather maps, and detailed analytics.',
-        longDescription:
-            'Developed a weather forecasting application integrating with OpenWeatherMap API for real-time weather data. Implemented geolocation services for automatic location detection and designed interactive charts for weather analytics visualization. Focused on error handling, API rate limiting, and caching strategies for optimal performance.',
-        technologies: [
-          'Flutter',
-          'Dart',
-          'REST API',
-          'Geolocation',
-          'Charts',
-          'Provider'
-        ],
-        features: [
-          'Real-time weather data from OpenWeatherMap API',
-          'Automatic location detection',
-          '7-day weather forecast',
-          'Interactive charts and analytics',
-          'Multiple location support',
-          'Weather alerts and notifications',
-          'Beautiful weather animations',
-        ],
-        category: 'Mobile App',
-        imageUrl: 'assets/images/projects/weather.png',
-        screenshots: [],
         youtubeVideoId: null,
-        downloadUrl: 'https://drive.google.com/file/d/YOUR_FILE_ID/view',
+        downloadUrl: 'https://github.com/iamSaifulhassan/SmartTaskmanager',
       ),
     ];
   }
