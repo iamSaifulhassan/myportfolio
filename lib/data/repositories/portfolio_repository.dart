@@ -5,7 +5,7 @@ import '../models/education.dart';
 
 class PortfolioRepository {
   // Portfolio Stats
-  static const int projectsCompleted = 11;
+  static const int projectsCompleted = 15;
   static const int skillsLearned = 15;
 
   // Certifications with logos and links
@@ -560,6 +560,18 @@ class PortfolioRepository {
   // Sample Experience Data
   static List<Experience> getExperience() {
     return [
+      Experience(
+        company: '10 Pearls Pakistan LLC',
+        position: 'Full Stack Software Engineering Intern',
+        duration: 'Jul 2026 – Aug 2026',
+        description:
+            'Full Stack Developer Internship focused on java, Spring Boot, React and REST API integration under defined technical constraints.',
+        achievements: [
+          'Enhanced my knowledge of Java, Spring Boot, React and REST API integration through hands-on experience using Hibernate,SQL Server and Postman for testing and debugging Spring Boot APIs',
+          'Developed an application under defined technical constraints and submission deadlines',
+          'Contributed to the repository assigned to with code reviews and pull requests, following best practices for version control and collaboration',
+        ],
+      ),
       Experience(
         company: 'CodeAlpha',
         position: 'Mobile Application Developer Intern',

@@ -484,7 +484,7 @@ class _ContactSectionState extends State<ContactSection> {
                   Flexible(
                     flex: 2,
                     child: Text(
-                        '© 2024 ${AppConstants.developerName}. All rights reserved.',
+                        '© 2026 ${AppConstants.developerName}. All rights reserved.',
                         style: AppTheme.bodyStyle
                             .copyWith(fontSize: 14, color: AppTheme.textHint),
                         overflow: TextOverflow.ellipsis),
