@@ -85009,7 +85009,7 @@ l=t._D
 k=t.p
 return A.bu(A.b([h,g,A.bu(A.b([s,r,A.aP(j,A.nF(B.im,A.a_(new A.a2(A.b([A.a1(["name","Oracle","icon","FontAwesomeIcons.oracle","certificateUrl","https://drive.google.com/file/d/1k0JdU-Xo6rSvsQa40AJpoKipWV_VwVil/view?usp=sharing"],m,m),A.a1(["name","Mindluster","icon","Icons.school","certificateUrl","https://drive.google.com/file/d/1Gc-x4Wmr6Z6z1t7g-pCKK8TZXHVPK468/view?usp=sharing"],m,m),A.a1(["name","Hackerrank","icon","FontAwesomeIcons.hackerrank","certificateUrl",u.J],m,m),A.a1(["name","JP Morgan","icon","FontAwesomeIcons.building","certificateUrl","https://drive.google.com/file/d/1fhHVSdLPrgSk9wO68B7fVZLArSHlRnTJ/view?usp=sharing"],m,m),A.a1(["name","EA Sports","icon","FontAwesomeIcons.gamepad","certificateUrl","https://drive.google.com/file/d/1ZvVbMsB6tXjSP7k4h2pXMK6BMW_7LhPr/view?usp=sharing"],m,m)],t.m0),new A.a_J(this,a,i),l),!0,l.i("ak.E")),n,o),B.n,j,j,j,j,j,j,new A.a9(q,p,q,p),j,j,1/0)],k),B.x,j,B.p,B.o)],k),B.x,j,B.p,B.o)},
 LA(){var s=this
-return A.b([s.wH("Projects Completed","10+"),s.wH("Paid Projects","3+"),s.wH("Years Experience","2.5-3+ Years"),s.wH("Technologies","15+")],t.p)},
+return A.b([s.wH("Projects Completed","15+"),s.wH("Paid Projects","5+"),s.wH("Years Experience","2.5-3+ Years"),s.wH("Technologies","15+")],t.p)},
 wH(a,b){var s=null
 return A.bu(A.b([A.ap(b,s,s,s,A.aY().$4$color$fontSize$fontWeight$height(B.e,48,B.a2,1.2).d1(B.k,36),s,s),B.cd,A.ap(a,s,s,s,A.aY().$3$color$fontSize$height(B.y,16,1.6).eq(16),B.aG,s)],t.p),B.x,s,B.p,B.o)},
 Cp(a){var s=null,r=A.bD(20),q=A.eT(A.a7(B.c.ai(76.5),B.k.gl(0)>>>16&255,B.k.gl(0)>>>8&255,B.k.gl(0)&255),1)
