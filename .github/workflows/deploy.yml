@@ -43,23 +43,7 @@ jobs:
       - name: Add legacy redirect for /myportfolio
         run: |
           mkdir -p build/web/myportfolio
-          cat << 'EOF' > build/web/myportfolio/index.html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=/">
-  <meta name="robots" content="noindex">
-  <script>
-    window.location.replace("/");
-  </script>
-  <title>Redirecting...</title>
-</head>
-<body>
-  <p>Redirecting to <a href="/">Saif Ul Hassan's portfolio</a>...</p>
-</body>
-</html>
-EOF
+          cp web/myportfolio/index.html build/web/myportfolio/index.html
 
       - name: Copy CNAME and .nojekyll
         run: |
